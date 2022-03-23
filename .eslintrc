@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": ["react", "jest", "testing-library"],
+  "rules": {
+    "react/prop-types": 0,
+    "no-undef": [
+      "warn",
+      {
+        "typeof": false
+      }
+    ],
+    "no-unused-labels": ["warn"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
