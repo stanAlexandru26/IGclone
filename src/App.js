@@ -6,6 +6,7 @@ import * as ROUTES from './constants/routes';
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/login'));
 const SignUp = lazy(() => import('./pages/signup'));
+const PasswordReset = lazy(() => import('./pages/passwordReset'));
 
 function App() {
   return (
@@ -14,9 +15,12 @@ function App() {
         <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
       </Routes>
     </Suspense>
   );
 }
 
 export default App;
+
+//TODO: Fix Login page to look like instagram

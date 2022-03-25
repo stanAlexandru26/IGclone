@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -40,15 +39,7 @@ export default function Login() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (currentCutOut === 0) {
-        setCurrentCutOut(1);
-      } else if (currentCutOut === 1) {
-        setCurrentCutOut(2);
-      } else if (currentCutOut === 2) {
-        setCurrentCutOut(3);
-      } else if (currentCutOut === 3) {
-        setCurrentCutOut(0);
-      }
+      setCurrentCutOut((currentCutOut + 1) % cutOutArray.length);
     }, 2000);
     return () => clearInterval(interval);
   }, [currentCutOut]);
@@ -61,7 +52,6 @@ export default function Login() {
           <img
             className="absolute inset-x-1/3  top-6 "
             src={cutOutArray[currentCutOut]}
-            alt="iPhone with Instagram app"
           />
         </div>
       </div>
@@ -100,12 +90,22 @@ export default function Login() {
               Log In
             </button>
           </form>
+          <div className=" w-full  flex  items-center ">
+            <div className="grow border-t border-gray-400"></div>
+            <span className="grow-0 mx-5 text-gray-400">OR</span>
+            <div className="grow border-t border-gray-400"></div>
+          </div>
+          <div className="flex justify-center">
+            <Link to={ROUTES.PASSWORD_RESET}>
+              <p className="text-sm text-blue-500">Forgot Password</p>
+            </Link>
+          </div>
           {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
         </div>
         <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
           <p className="text-sm">
             Don&apos;t have an account?{' '}
-            <Link to={ROUTES.SIGN_UP} className="font-bold">
+            <Link to={ROUTES.SIGN_UP} className="font-semibold text-blue-500">
               Sign up
             </Link>
           </p>
