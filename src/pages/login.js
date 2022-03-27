@@ -9,6 +9,7 @@ import CutOut0 from '../assets/images/login/cutout-0.png';
 import CutOut1 from '../assets/images/login/cutout-1.png';
 import CutOut2 from '../assets/images/login/cutout-2.png';
 import CutOut3 from '../assets/images/login/cutout-3.png';
+import { IconFacebook } from '../utils/getIcon';
 
 export default function Login() {
   let navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function Login() {
 
   const cutOutArray = [CutOut0, CutOut1, CutOut2, CutOut3];
   const auth = getAuth();
+  const isValid = emailAddress === '' || password === '';
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -84,20 +86,32 @@ export default function Login() {
             />
             <button
               type="submit"
-              className={`bg-blue-500 text-white w-full rounded h-8 font-bold 
-            }`}
+              disabled={isValid}
+              className={`bg-blue-500 text-white w-full rounded h-8 font-bold ${
+                isValid ? 'cursor-not-allowed opacity-50' : 'active:bg-blue-300'
+              }`}
             >
               Log In
             </button>
           </form>
-          <div className=" w-full  flex  items-center ">
+          <div className=" w-full  flex  items-center my-4 ">
             <div className="grow border-t border-gray-400"></div>
-            <span className="grow-0 mx-5 text-gray-400">OR</span>
+            <span className="grow-0 mx-5 text-xs font-bold tracking-wide text-gray-400">
+              OR
+            </span>
             <div className="grow border-t border-gray-400"></div>
           </div>
-          <div className="flex justify-center">
+          <button
+            className={
+              ' text-blue-600 flex items-center justify-center gap-2  w-full rounded h-8 font-semibold active:opacity-50'
+            }
+          >
+            <IconFacebook />
+            Log in with Facebook
+          </button>
+          <div className="flex justify-center my-2">
             <Link to={ROUTES.PASSWORD_RESET}>
-              <p className="text-sm text-blue-500">Forgot Password</p>
+              <p className="text-sm text-blue-500">Forgot Password?</p>
             </Link>
           </div>
           {error && <p className="mb-4 text-xs text-red-500">{error}</p>}

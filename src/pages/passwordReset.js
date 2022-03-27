@@ -45,16 +45,22 @@ export default function Login() {
             />
             <button
               type="submit"
-              className={`bg-blue-500 font-semibol text-white w-full rounded h-8 font-bold
-              }`}
+              disabled={!emailAddress}
+              className={`bg-blue-500 text-white w-full rounded h-8 font-bold ${
+                emailAddress
+                  ? 'cursor-not-allowed opacity-50'
+                  : 'active:bg-blue-300'
+              } `}
             >
               Send Login Link
             </button>
           </form>
 
-          <div className=" w-full  flex  items-center ">
+          <div className=" w-full  flex  items-center my-4 ">
             <div className="grow border-t border-gray-400"></div>
-            <span className="grow-0 mx-5 text-gray-400">OR</span>
+            <span className="grow-0 mx-5 text-xs font-bold tracking-wide text-gray-400">
+              OR
+            </span>
             <div className="grow border-t border-gray-400"></div>
           </div>
 

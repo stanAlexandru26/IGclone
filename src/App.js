@@ -23,4 +23,3 @@ function App() {
 
 export default App;
 
-//TODO: Fix Login page to look like instagram

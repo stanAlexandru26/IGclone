@@ -55,3 +55,42 @@ export function IconInputRefresh() {
     ></span>
   );
 }
+export function IconLogo() {
+  return (
+    <span
+      style={{
+        backgroundImage: `url(${sprite})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: `0 -130px`,
+        height: '51px',
+        width: '175px',
+      }}
+    ></span>
+  );
+}
+export function IconFacebookInverted() {
+  return (
+    <span
+      style={{
+        backgroundImage: `url(${sprite})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: `-414px -300px`,
+        height: '16px',
+        width: '16px',
+      }}
+    ></span>
+  );
+}
+export function IconFacebook() {
+  return (
+    <span
+      style={{
+        backgroundImage: `url(${sprite})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: `-414px -259px`,
+        height: '16px',
+        width: '16px',
+      }}
+    ></span>
+  );
+}
