@@ -1,33 +1,20 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { IconLogo, IconFacebookInverted } from '../utils/getIcon';
 import FirebaseContext from '../context/firebaseContext';
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  setDoc,
-  doc,
-  addDoc,
-} from 'firebase/firestore';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth';
+import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignUp() {
-  const history = useNavigate();
-  const { firebase, db } = useContext(FirebaseContext);
+  const navigate = useNavigate();
+  const { db } = useContext(FirebaseContext);
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [userIsTaken, setUserIsTaken] = useState(false);
+
   const isValid =
     username === '' ||
     fullName === '' ||
@@ -77,7 +64,7 @@ export default function SignUp() {
           dateCreated: Date.now(),
         });
 
-        history.push(ROUTES.DASHBOARD);
+        navigate(ROUTES.DASHBOARD);
       } catch (error) {
         setError(error.message);
       }
