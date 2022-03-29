@@ -1,11 +1,17 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useContext } from 'react';
 import * as ROUTES from '../constants/routes';
 import { Link } from 'react-router-dom';
 import FirebaseContext from '../context/firebaseContext';
+import UserContext from '../context/userContext';
 import LogInLogo from '../assets/images/logo.png';
+import { getAuth, signOut } from 'firebase/auth';
 
 export default function Header() {
   const { firebase } = useContext(FirebaseContext);
+  const auth = getAuth();
+  const user = useContext(UserContext);
 
   return (
     <header className="h-16 bg-white border-b mb-8  ">
@@ -19,14 +25,13 @@ export default function Header() {
             </h1>
           </div>
           <div className="text-gray text-ce nter flex items-center align-items">
-            {firebase ? (
+            {user ? (
               <>
-                <div className="flex flex-row items-center gap-6">
+                <div className="flex flex-row items-center gap-6 ">
                   <Link to={ROUTES.DASHBOARD} arial-label="Home">
                     <svg
-                      className="w-6   cursor-pointer"
+                      className="w-6  fill-transparent hover:fill-black  cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="262626"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
@@ -38,9 +43,13 @@ export default function Header() {
                       />
                     </svg>
                   </Link>
-                  <button type="button" title="Sign Out">
+                  <button
+                    type="button"
+                    title="Sign Out  "
+                    onClick={() => signOut(auth)}
+                  >
                     <svg
-                      className="w-8   cursor-pointer"
+                      className="w-8 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -54,6 +63,15 @@ export default function Header() {
                       />
                     </svg>
                   </button>
+                  <div className="flex items-center cursor-pointer ">
+                    <Link to={`/p/${user.displayName}`}>
+                      <img
+                        className="rounded-full h-8 w-8 flex hover:ring-1 ring-offset-2 hover:ring-neutral-600"
+                        src={require(`../assets/images/avatars/${user.photoURL}.jpg`)}
+                        alt={`${user.displayName} profile picture`}
+                      />
+                    </Link>
+                  </div>
                 </div>
               </>
             ) : (
