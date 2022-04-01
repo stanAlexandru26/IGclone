@@ -1,5 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 
 async function getCurrentUserFirestoreData(userId) {
@@ -37,7 +46,47 @@ async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
   return photosWithUserDetails;
 }
 
+async function getSuggestedProfiles(userId) {
+  const q = query(collection(db, 'users'), where('userId', '!=', userId));
+  const result = await getDocs(q);
 
+  const [{ following }] = await getCurrentUserFirestoreData(userId);
 
+  return result.docs
+    .map((user) => ({ ...user.data(), docId: user.id }))
+    .filter(
+      (profile) =>
+        profile.userId !== userId && !following.includes(profile.userId),
+    );
+}
 
-export { getCurrentUserFirestoreData, getFirebaseUserFolowersPosts };
+async function followUser(docId, userId, followingDocId, followingUserId) {
+  const userDocument = await doc(db, 'users', docId);
+  const followingUserDocument = await doc(db, 'users', followingDocId);
+
+  await updateDoc(userDocument, {
+    following: arrayUnion(followingUserId),
+  });
+  await updateDoc(followingUserDocument, {
+    followers: arrayUnion(userId),
+  });
+}
+async function unfollowUser(docId, userId, followingDocId, followingUserId) {
+  const userDocument = await doc(db, 'users', docId);
+  const followingUserDocument = await doc(db, 'users', followingDocId);
+
+  await updateDoc(userDocument, {
+    following: arrayRemove(followingUserId),
+  });
+  await updateDoc(followingUserDocument, {
+    followers: arrayRemove(userId),
+  });
+}
+
+export {
+  getCurrentUserFirestoreData,
+  getFirebaseUserFolowersPosts,
+  getSuggestedProfiles,
+  followUser,
+  unfollowUser,
+};
