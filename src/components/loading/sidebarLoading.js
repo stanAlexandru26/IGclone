@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoadingPlaceholder() {
+export default function SidebarLoading() {
   return (
     <div>
       <div className="m-16">
