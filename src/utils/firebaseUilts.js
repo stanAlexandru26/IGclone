@@ -37,4 +37,7 @@ async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
   return photosWithUserDetails;
 }
 
+
+
+
 export { getCurrentUserFirestoreData, getFirebaseUserFolowersPosts };
