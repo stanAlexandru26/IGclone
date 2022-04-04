@@ -9,6 +9,8 @@ const Dashboard = lazy(() => import('./pages/dashboard'));
 const Login = lazy(() => import('./pages/login'));
 const SignUp = lazy(() => import('./pages/signup'));
 const PasswordReset = lazy(() => import('./pages/passwordReset'));
+const Profile = lazy(() => import('./pages/profile'));
+const NotFound = lazy(() => import('./pages/notFound'));
 
 function App() {
   const { user } = useAuthListener();
@@ -18,8 +20,10 @@ function App() {
         <Routes>
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route path={ROUTES.PROFILE} element={<Profile />} />
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
+          <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
         </Routes>
       </Suspense>
     </UserContext.Provider>

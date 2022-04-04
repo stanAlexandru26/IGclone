@@ -82,6 +82,33 @@ async function unfollowUser(docId, userId, followingDocId, followingUserId) {
     followers: arrayRemove(userId),
   });
 }
+async function getUserByUsername(username) {
+  const q = query(collection(db, 'users'), where('username', '==', username));
+  const querySnapshot = await getDocs(q);
+
+  const user = querySnapshot.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return user.length > 0 ? user : false;
+}
+async function getUserPhotosByUsername(username) {
+  const user = await getUserByUsername(username);
+
+  const q = query(
+    collection(db, 'photos'),
+    where('userId', '==', user[0].userId),
+  );
+  const result = await getDocs(q);
+
+  const photos = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return photos;
+}
 
 export {
   getCurrentUserFirestoreData,
@@ -89,4 +116,6 @@ export {
   getSuggestedProfiles,
   followUser,
   unfollowUser,
+  getUserByUsername,
+  getUserPhotosByUsername,
 };
