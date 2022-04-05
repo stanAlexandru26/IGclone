@@ -1,9 +1,11 @@
 import React from 'react';
+import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
-export default function Image({ src, caption }) {
+export default function Image({ caption, docId }) {
+  const { photoFirebaseUrl } = useFirebaseStorage(docId);
   return (
-    <div className="post__img">
-      <img src={require(`../../assets${src}`)} alt={caption} />
+    <div>
+      <img src={photoFirebaseUrl} alt={caption} />
     </div>
   );
 }

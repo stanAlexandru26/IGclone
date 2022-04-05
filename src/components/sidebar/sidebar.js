@@ -14,8 +14,14 @@ export default function Sidebar() {
       ) : (
         <>
           <div className="flex flex-col gap-3">
-            <User username={activeUser.username} fullName={activeUser.fullName} />
-            <div className="py-2 text-gray-400 font-semibold ">Suggestions For You</div>
+            <User
+              username={activeUser.username}
+              fullName={activeUser.fullName}
+              userId={activeUser.userId}
+            />
+            <div className="py-2 text-gray-400 font-semibold ">
+              Suggestions For You
+            </div>
             <Sugestions userId={activeUser.userId} />
           </div>
         </>

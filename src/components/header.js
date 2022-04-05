@@ -5,11 +5,14 @@ import UserContext from '../context/userContext';
 import LogInLogo from '../assets/images/logo.png';
 import { getAuth, signOut } from 'firebase/auth';
 import useOutsideClick from '../hooks/useOutsideClick';
+import useFirebaseStorage from '../hooks/useFirebaseStorage';
 
 export default function Header() {
-  const auth = getAuth();
   const user = useContext(UserContext);
-  const { ref, visible, setVisible } = useOutsideClick(false);
+  const auth = getAuth();
+  const { objectReference, visible, setVisible } = useOutsideClick(false);
+
+  const { photoFirebaseUrl } = useFirebaseStorage(user.uid, 'avatar');
 
   return (
     <header className="w-screen bg-white border-b mb-8">
@@ -123,12 +126,12 @@ export default function Header() {
                       className={`rounded-full h-8 w-8    ${
                         visible ? 'ring-neutral-600 ring-1 ring-offset-2' : null
                       } `}
-                      src={require(`../assets/images/avatars/${user.photoURL}.jpg`)}
+                      src={photoFirebaseUrl}
                       alt={`${user.displayName} profile picture`}
                       onClick={() => setVisible(!visible)}
                     />
                     <div
-                      ref={ref}
+                      ref={objectReference}
                       className={`absolute top-14 w-56 -left-44 bg-white rounded drop-shadow-[0_0_1px_rgba(0,0,0,0.25)] shadow-xl hover:cursor-pointer   ${
                         visible ? 'block' : 'hidden'
                       }`}

@@ -1,11 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 
 export default function useOutsideClick(initialState) {
-  const ref = useRef(null);
+  const objectReference = useRef(null);
   const [visible, setVisible] = useState(initialState);
 
   const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+    if (
+      objectReference.current &&
+      !objectReference.current.contains(event.target)
+    ) {
       setVisible(false);
     }
   };
@@ -23,7 +26,7 @@ export default function useOutsideClick(initialState) {
       document.removeEventListener('mousedown', handleClickOutside, true);
       document.removeEventListener('keydown', handleKeyPress, true);
     };
-  }, [ref]);
+  }, [objectReference]);
 
-  return { ref, visible, setVisible };
+  return { objectReference, visible, setVisible };
 }

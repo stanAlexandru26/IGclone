@@ -1,13 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../../context/userContext';
-import {
-  followUser,
-  unfollowUser,
-  getCurrentUserFirestoreData,
-} from '../../utils/firebaseUilts';
+import { followUser, unfollowUser } from '../../utils/firebaseUilts';
 import useUser from '../../hooks/useUser';
+import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
 export default function ProfileUserHeader({
   photosCount,
@@ -20,6 +15,7 @@ export default function ProfileUserHeader({
   const firebaseUser = useContext(UserContext);
   const firebaseUserTest = useUser();
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
+  const { photoFirebaseUrl } = useFirebaseStorage(profile.userId, 'avatar');
 
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
@@ -56,7 +52,7 @@ export default function ProfileUserHeader({
         <img
           className="rounded-full h-40 w-40 "
           alt={`${username} profile picture`}
-          src={require(`../../assets/images/avatars/${username}.jpg`)}
+          src={photoFirebaseUrl}
         />
       </div>
       <div className="flex items-center justify-center flex-col gap-4">

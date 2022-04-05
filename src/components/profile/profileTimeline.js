@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfilePost from './ProfilePost';
 
 export default function ProfileTimeline({ profilePhotos }) {
   return (
@@ -6,17 +7,12 @@ export default function ProfileTimeline({ profilePhotos }) {
       <div className="grid grid-cols-3 gap-8 mt-4 mb-12">
         {!profilePhotos ? (
           <>
-            <p>Thats life</p>
+            <p>Add Photos</p>
           </>
         ) : profilePhotos && profilePhotos.length > 0 ? (
           profilePhotos &&
           profilePhotos.map((photo) => (
-            <div key={photo.docId} className="relative group">
-              <img
-                src={require(`../../assets${photo.imageSrc}`)}
-                alt={photo.caption}
-              />
-            </div>
+            <ProfilePost key={photo.id} photo={photo} />
           ))
         ) : null}
       </div>

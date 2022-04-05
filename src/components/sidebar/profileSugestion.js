@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   getCurrentUserFirestoreData,
-  updateUserFollowing,
-  updateFollowedUserFollowers,
   followUser,
 } from '../../utils/firebaseUilts';
+import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
 export default function SuggestedProfile({
   userDocId,
@@ -15,6 +13,7 @@ export default function SuggestedProfile({
   userId,
 }) {
   const [followed, setFollowed] = useState(false);
+  const { photoFirebaseUrl } = useFirebaseStorage(profileId, 'avatar');
 
   async function handleFollowUser() {
     setFollowed(true);
@@ -27,8 +26,8 @@ export default function SuggestedProfile({
     <div className="flex items-center gap-3">
       <Link to={`/p/${username}`}>
         <img
-          className="rounded-full w-8 border-2"
-          src={require(`../../assets/images/avatars/${username}.jpg`)}
+          className="rounded-full w-8 h-8 border-2"
+          src={photoFirebaseUrl}
           alt={`Follow ${username}`}
         />
       </Link>

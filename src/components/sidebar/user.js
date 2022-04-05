@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
-export default function User({ username, fullName }) {
+export default function User({ username, fullName,userId }) {
+
+  const { photoFirebaseUrl } = useFirebaseStorage(userId, 'avatar');
   return (
     <>
       <div>
         <Link to={`/p/${username}`}>
           <div className="flex gap-6 items-center">
             <img
-              src={require(`../../assets/images/avatars/${username}.jpg`)}
+              src={photoFirebaseUrl}
               alt="Profile avatar"
               className="rounded-full w-16"
             />

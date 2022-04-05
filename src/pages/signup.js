@@ -54,6 +54,11 @@ export default function SignUp() {
           password,
         );
 
+        // await updateProfile(auth.currentUser, {
+        //   displayName: fullName,
+        //   photoURL: 'avatars/default_avatar',
+        // });
+
         await addDoc(collection(db, 'users'), {
           userId: user.user.uid,
           username: username.toLocaleLowerCase(),
@@ -63,7 +68,6 @@ export default function SignUp() {
           followers: [],
           dateCreated: Date.now(),
         });
-
         navigate(ROUTES.DASHBOARD);
       } catch (error) {
         setError(error.message);
