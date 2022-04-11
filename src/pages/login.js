@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as ROUTES from '../constants/routes';
-import LogInTemplate from '../assets/images/iphone-cutout-template.png';
+import LogInTemplate from '../assets/images/login/iphone-cutout-template.png';
 import LogInLogo from '../assets/images/logo.png';
 import CutOut0 from '../assets/images/login/cutout-0.png';
 import CutOut1 from '../assets/images/login/cutout-1.png';
@@ -20,7 +20,7 @@ export default function Login() {
 
   const cutOutArray = [CutOut0, CutOut1, CutOut2, CutOut3];
   const auth = getAuth();
-  const isValid = emailAddress === '' || password === '';
+  const isValid = password === '' || emailAddress === '';
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -47,9 +47,9 @@ export default function Login() {
   }, [currentCutOut]);
 
   return (
-    <div className="container flex mx-auto max-w-screen-md items-center h-screen">
-      <div className="flex w-3/5 ">
-        <div className="relative ">
+    <div className=" mx-auto flex  h-screen w-screen items-center justify-center">
+      <div className="flex   ">
+        <div className="relative hidden md:block ">
           <img src={LogInTemplate} alt="iPhone with Instagram app" />
           <img
             className="absolute inset-x-1/3  top-6 "
@@ -57,20 +57,20 @@ export default function Login() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-2/5">
-        <div className="flex flex-col items-center bg-white p-4 border mb-4">
-          <h1 className="flex justify-center w-full">
+      <div className="flex w-1/5 flex-col">
+        <div className="mb-4 flex flex-col items-center border bg-white p-4">
+          <h1 className="flex w-full justify-center">
             <img
               src={LogInLogo}
               alt="Instagram Logo"
-              className="mt-2 w-6/12 mb-4"
+              className="mt-2 mb-4 w-6/12"
             />
           </h1>
 
           <form onSubmit={handleLogin} method="POST">
             <input
               aria-label="Enter your email address"
-              className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
+              className="mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="text"
               value={emailAddress}
               placeholder="Email address"
@@ -78,7 +78,7 @@ export default function Login() {
             />
             <input
               aria-label="Enter your password"
-              className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
+              className="mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="password"
               value={password}
               placeholder="Password"
@@ -87,36 +87,36 @@ export default function Login() {
             <button
               type="submit"
               disabled={isValid}
-              className={`bg-blue-500 text-white w-full rounded h-8 font-bold ${
+              className={`h-8 w-full rounded bg-blue-500 font-bold text-white ${
                 isValid ? 'cursor-not-allowed opacity-50' : 'active:bg-blue-300'
               }`}
             >
               Log In
             </button>
           </form>
-          <div className=" w-full  flex  items-center my-4 ">
+          <div className=" my-4  flex  w-full items-center ">
             <div className="grow border-t border-gray-400"></div>
-            <span className="grow-0 mx-5 text-xs font-bold tracking-wide text-gray-400">
+            <span className="mx-5 grow-0 text-xs font-bold tracking-wide text-gray-400">
               OR
             </span>
             <div className="grow border-t border-gray-400"></div>
           </div>
           <button
             className={
-              ' text-blue-600 flex items-center justify-center gap-2  w-full rounded h-8 font-semibold active:opacity-50'
+              ' flex h-8 w-full items-center justify-center  gap-2 rounded font-semibold text-blue-600 active:opacity-50'
             }
           >
             <IconFacebook />
             Log in with Facebook
           </button>
-          <div className="flex justify-center my-2">
+          <div className="my-2 flex justify-center">
             <Link to={ROUTES.PASSWORD_RESET}>
               <p className="text-sm text-blue-500">Forgot Password?</p>
             </Link>
           </div>
           {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
         </div>
-        <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
+        <div className="flex w-full flex-col items-center justify-center border bg-white p-4">
           <p className="text-sm">
             Don&apos;t have an account?{' '}
             <Link to={ROUTES.SIGN_UP} className="font-semibold text-blue-500">

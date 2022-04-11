@@ -7,7 +7,6 @@ import {
 
 export default function useTimelinePosts() {
   const [posts, setPosts] = useState([]);
-  
 
   const firebaseUser = useContext(UserContext);
 

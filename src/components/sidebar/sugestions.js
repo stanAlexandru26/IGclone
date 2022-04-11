@@ -19,7 +19,7 @@ export default function Sugestions({ userId }) {
   return (
     <div>
       {profiles && profiles.length > 0 && (
-        <div className="flex flex-col p-2 gap-2">
+        <div className="flex flex-col gap-2 p-2">
           {profiles.map((profile) => (
             <ProfileSugestion
               key={profile.docId}
@@ -27,6 +27,7 @@ export default function Sugestions({ userId }) {
               username={profile.username}
               profileId={profile.userId}
               userId={userId}
+              profileImgSrc={profile.imageSrc}
             />
           ))}
         </div>

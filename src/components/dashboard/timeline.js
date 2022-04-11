@@ -1,7 +1,7 @@
 import React from 'react';
-import TimelineLoading from './loading/timelineLoading';
-import useTimelinePosts from '../hooks/useTimelinePosts';
-import Post from './post/post';
+import TimelineLoading from '../loading/timelineLoading';
+import useTimelinePosts from '../../hooks/useTimelinePosts';
+import Post from './post/index';
 
 export default function Timeline() {
   const { posts } = useTimelinePosts();

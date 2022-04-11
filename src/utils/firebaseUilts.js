@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   collection,
   getDocs,
@@ -9,6 +8,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
+
 import { db } from '../firebase/firebase';
 
 async function getCurrentUserFirestoreData(userId) {
@@ -25,7 +25,7 @@ async function getCurrentUserFirestoreData(userId) {
 
 async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
   const q = query(
-    collection(db, 'photos'),
+    collection(db, 'posts'),
     where('userId', 'in', followingUserIds),
   );
   const result = await getDocs(q);
@@ -36,10 +36,10 @@ async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
   const photosWithUserDetails = await Promise.all(
     photos.map(async (photo) => {
       let userLikedPhoto = photo.likes.includes(userId) ? true : false;
-
       const user = await getCurrentUserFirestoreData(photo.userId);
       const username = user[0].username;
-      return { username, ...photo, userLikedPhoto };
+      const userImageSrc = user[0].imageSrc;
+      return { username, ...photo, userLikedPhoto, userImageSrc };
     }),
   );
 
@@ -97,7 +97,7 @@ async function getUserPhotosByUsername(username) {
   const user = await getUserByUsername(username);
 
   const q = query(
-    collection(db, 'photos'),
+    collection(db, 'posts'),
     where('userId', '==', user[0].userId),
   );
   const result = await getDocs(q);

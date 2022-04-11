@@ -15,7 +15,7 @@ export default function Comments({
     <>
       <div className="p-4 pt-1 ">
         {comments.length >= 3 && (
-          <p className="text-sm text-gray-500 cursor-pointer">
+          <p className="cursor-pointer text-sm text-gray-500">
             View all {comments.length} comments
           </p>
         )}
@@ -23,7 +23,7 @@ export default function Comments({
           {comments.slice(0, 3).map((item) => (
             <p
               key={`${item.comment}-${item.displayName}`}
-              className="flex gap-2 items-center"
+              className="flex items-center gap-2"
             >
               <Link to={`/p/${item.displayName}`}>
                 <span className="font-semibold ">{item.displayName}</span>
@@ -32,7 +32,7 @@ export default function Comments({
             </p>
           ))}
         </div>
-        <p className="text-gray-400 uppercase text-xs mt-2">
+        <p className="mt-2 text-xs uppercase text-gray-400">
           {moment(postedDate).fromNow()}
         </p>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from '../components/header';
-import Timeline from '../components/timeline';
-import Sidebar from '../components/sidebar/sidebar';
+import Timeline from '../components/dashboard/timeline';
+import Sidebar from '../components/sidebar';
 
 export default function Dashboard() {
   useEffect(() => {
@@ -9,9 +9,9 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="w-screen h-screen">
+    <div className="h-screen w-screen">
       <Header />
-      <div className="grid grid-cols-3 gap-7 justify-between mx-auto max-w-screen-lg">
+      <div className="mx-auto grid max-w-screen-lg grid-cols-3 justify-between gap-7">
         <Timeline />
         <Sidebar />
       </div>

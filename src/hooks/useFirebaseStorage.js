@@ -11,8 +11,8 @@ export default function useFirebaseStorage(imageSrc, type) {
     const getImgUrl = (imageSrc) => {
       const storageRef =
         type === 'avatar'
-          ? ref(storage, `avatars/${imageSrc}.jpg`)
-          : ref(storage, `images/${imageSrc}.jpg`);
+          ? ref(storage, `avatars/${imageSrc}`)
+          : ref(storage, `images/${imageSrc}`);
 
       getDownloadURL(storageRef)
         .then((url) => {
@@ -20,7 +20,7 @@ export default function useFirebaseStorage(imageSrc, type) {
         })
         .catch((error) => {
           if (error.code === 'storage/object-not-found') {
-            getImgUrl('default_avatar', 'avatar');
+            console.log("File doesn't exist");
           }
         });
     };

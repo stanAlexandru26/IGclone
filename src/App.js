@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import UserContext from './context/userContext';
@@ -12,10 +10,14 @@ const SignUp = lazy(() => import('./pages/signup'));
 const PasswordReset = lazy(() => import('./pages/passwordReset'));
 const Profile = lazy(() => import('./pages/profile'));
 const NotFound = lazy(() => import('./pages/notFound'));
+const AccountSettingsPage = lazy(() => import('./pages/accountSettings'));
+const AccountSaved = lazy(() => import('./pages/accountSaved'));
+const Explore = lazy(() => import('./pages/Explore'));
 
 function App() {
+  const { user } = useAuthListener();
+
   const ProtectedRoute = ({ children }) => {
-    const { user } = useAuthListener();
     const location = useLocation();
 
     if (!user) {
@@ -25,7 +27,6 @@ function App() {
     return children;
   };
 
-  const { user } = useAuthListener();
   return (
     <UserContext.Provider value={user}>
       <Suspense fallback={<div>Loading...</div>}>
@@ -35,6 +36,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.ACCOUNT_SETTINGS}
+            element={
+              <ProtectedRoute>
+                <AccountSettingsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.ACCOUNT_SAVED}
+            element={
+              <ProtectedRoute>
+                <AccountSaved />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.EXPLORE}
+            element={
+              <ProtectedRoute>
+                <Explore />
               </ProtectedRoute>
             }
           />

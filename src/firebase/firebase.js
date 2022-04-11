@@ -12,7 +12,6 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
-
 const db = getFirestore(firebase);
 const storage = getStorage(firebase);
 

@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { getCurrentUserFirestoreData } from '../utils/firebaseUilts';
 import UserContext from '../context/userContext';
 
-
 export default function useUser() {
   const [activeUser, setActiveUser] = useState();
   const user = useContext(UserContext);

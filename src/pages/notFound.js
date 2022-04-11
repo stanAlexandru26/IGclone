@@ -10,8 +10,8 @@ export default function NotFound() {
   return (
     <div className="bg-gray">
       <Header />
-      <div className="mx-auto flex flex-col gap-6 items-center">
-        <p className="font-semibold text-xl">
+      <div className="mx-auto flex flex-col items-center gap-6">
+        <p className="text-xl font-semibold">
           Sorry, this page isn&apos;t available.
         </p>
         <p>

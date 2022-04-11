@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import Header from '../components/header.js';
-import UserProfile from '../components/profile/profile.js';
+import Header from '../components/header';
+import UserProfile from '../components/profile/index.js';
 import { getUserByUsername } from '../utils/firebaseUilts';
 
 export default function Profile() {

@@ -11,9 +11,10 @@ export default function SuggestedProfile({
   username,
   profileId,
   userId,
+  profileImgSrc,
 }) {
   const [followed, setFollowed] = useState(false);
-  const { photoFirebaseUrl } = useFirebaseStorage(profileId, 'avatar');
+  const { photoFirebaseUrl } = useFirebaseStorage(profileImgSrc, 'avatar');
 
   async function handleFollowUser() {
     setFollowed(true);
@@ -26,16 +27,16 @@ export default function SuggestedProfile({
     <div className="flex items-center gap-3">
       <Link to={`/p/${username}`}>
         <img
-          className="rounded-full w-8 h-8 border-2"
+          className="h-8 w-8 rounded-full border-2"
           src={photoFirebaseUrl}
           alt={`Follow ${username}`}
         />
       </Link>
-      <div className="flex flex-col flex-auto">
+      <div className="flex flex-auto flex-col">
         <Link to={`/p/${username}`}>
-          <span className="font-semibold text-sm">{username}</span>
+          <span className="text-sm font-semibold">{username}</span>
         </Link>
-        <span className="text-gray-400 text-xs">Followed by</span>
+        <span className="text-xs text-gray-400">Followed by</span>
       </div>
       <button
         className="text-sm font-semibold text-blue-400 "

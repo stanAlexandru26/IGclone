@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import UserContext from '../../context/userContext';
-import FirebaseContext from '../../context/firebaseContext';
+import UserContext from '../../../context/userContext';
+import FirebaseContext from '../../../context/firebaseContext';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 export default function Actions({
@@ -17,7 +17,7 @@ export default function Actions({
   const handleToggleLiked = async () => {
     setToggleLiked((toggleLiked) => !toggleLiked);
 
-    const document = await doc(db, 'photos', docId);
+    const document = await doc(db, 'posts', docId);
 
     await updateDoc(document, {
       likes: toggleLiked ? arrayRemove(user.uid) : arrayUnion(user.uid),
@@ -32,7 +32,7 @@ export default function Actions({
         <div className="flex">
           <svg
             onClick={() => handleToggleLiked((toggleLiked) => !toggleLiked)}
-            className={`w-7 mr-4 select-none cursor-pointer hover:opacity-50 ${
+            className={`mr-4 w-7 cursor-pointer select-none hover:opacity-50 ${
               toggleLiked ? 'fill-current text-red-500' : 'text-black'
             }`}
             xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ export default function Actions({
           </svg>
           <svg
             onClick={handleFocus}
-            className=" w-6 text-black-light select-none cursor-pointer hover:opacity-50"
+            className=" text-black-light w-6 cursor-pointer select-none hover:opacity-50"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

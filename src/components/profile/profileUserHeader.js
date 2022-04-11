@@ -15,8 +15,7 @@ export default function ProfileUserHeader({
   const firebaseUser = useContext(UserContext);
   const firebaseUserTest = useUser();
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
-  const { photoFirebaseUrl } = useFirebaseStorage(profile.userId, 'avatar');
-
+  const { photoFirebaseUrl } = useFirebaseStorage(profile.imageSrc, 'avatar');
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
     setFollowerCount({
@@ -47,20 +46,20 @@ export default function ProfileUserHeader({
   }, [profile]);
 
   return (
-    <div className="flex flex-row gap-8 mx-auto ">
+    <div className="mx-auto flex flex-row gap-8 ">
       <div className=" ">
         <img
-          className="rounded-full h-40 w-40 "
+          className="h-40 w-40 rounded-full "
           alt={`${username} profile picture`}
           src={photoFirebaseUrl}
         />
       </div>
-      <div className="flex items-center justify-center flex-col gap-4">
+      <div className="flex flex-col items-center justify-center gap-4">
         <div className="container flex items-center gap-4">
           <p className="text-2xl ">{username}</p>
 
           <button
-            className="bg-blue-500 font-bold text-sm rounded text-white w-20 h-8"
+            className="h-8 w-20 rounded bg-blue-500 text-sm font-bold text-white"
             type="button"
             onClick={handleToggleFollow}
           >

@@ -17,9 +17,9 @@ export default function Sidebar() {
             <User
               username={activeUser.username}
               fullName={activeUser.fullName}
-              userId={activeUser.userId}
+              imageSrc={activeUser.imageSrc}
             />
-            <div className="py-2 text-gray-400 font-semibold ">
+            <div className="py-2 font-semibold text-gray-400 ">
               Suggestions For You
             </div>
             <Sugestions userId={activeUser.userId} />

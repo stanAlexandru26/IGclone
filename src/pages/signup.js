@@ -4,7 +4,11 @@ import * as ROUTES from '../constants/routes';
 import { IconLogo, IconFacebookInverted } from '../utils/getIcon';
 import FirebaseContext from '../context/firebaseContext';
 import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -54,19 +58,20 @@ export default function SignUp() {
           password,
         );
 
-        // await updateProfile(auth.currentUser, {
-        //   displayName: fullName,
-        //   photoURL: 'avatars/default_avatar',
-        // });
+        await updateProfile(auth.currentUser, {
+          displayName: username,
+          photoURL: 'default_avatar.jpg',
+        });
 
         await addDoc(collection(db, 'users'), {
           userId: user.user.uid,
-          username: username.toLocaleLowerCase(),
+          username: username,
           fullName: fullName,
           emailAddress: emailAddress,
           following: [],
           followers: [],
           dateCreated: Date.now(),
+          imageSrc: 'default_avatar.jpg',
         });
         navigate(ROUTES.DASHBOARD);
       } catch (error) {
@@ -76,24 +81,24 @@ export default function SignUp() {
   };
 
   return (
-    <div className="container flex mx-auto max-w-xs items-center h-screen">
+    <div className="container mx-auto flex h-screen max-w-xs items-center">
       <div className="flex flex-col">
-        <div className="flex flex-col items-center bg-white  border mb-4 p-8">
+        <div className="mb-4 flex flex-col items-center  border bg-white p-8">
           <IconLogo />
-          <h1 className="text-gray-400 text-center  font-semibold my-3">
+          <h1 className="my-3 text-center  font-semibold text-gray-400">
             Sign up to see photos and videos from your friends.
           </h1>
           <button
             className={
-              'bg-blue-500 flex items-center justify-center gap-2 text-white w-full rounded h-8 font-semibold active:opacity-50'
+              'flex h-8 w-full items-center justify-center gap-2 rounded bg-blue-500 font-semibold text-white active:opacity-50'
             }
           >
             <IconFacebookInverted />
             Log in with Facebook
           </button>
-          <div className=" w-full  flex  items-center my-4 ">
+          <div className=" my-4  flex  w-full items-center ">
             <div className="grow border-t border-gray-400"></div>
-            <span className="grow-0 mx-5 text-xs font-bold tracking-wide text-gray-400">
+            <span className="mx-5 grow-0 text-xs font-bold tracking-wide text-gray-400">
               OR
             </span>
             <div className="grow border-t border-gray-400"></div>
@@ -101,43 +106,43 @@ export default function SignUp() {
           <form onSubmit={handleSignUp} method="POST">
             <input
               aria-label="Enter your username"
-              className="text-sm text-gray w-full mr-3 py-5 px-4 h-2 border bg-gray-background rounded mb-2"
+              className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="text"
               placeholder="Username"
               value={username}
-              onChange={({ target }) => setUsername(target.value.toLowerCase())}
+              onChange={(event) => setUsername(event.target.value)}
             />
             <input
               aria-label="Enter your full name"
-              className="text-sm text-gray w-full mr-3 py-5 px-4 h-2 border bg-gray-background rounded mb-2"
+              className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="text"
               placeholder="Full name"
               value={fullName}
-              onChange={({ target }) => setFullName(target.value)}
+              onChange={(event) => setFullName(event.target.value)}
             />
             <input
               aria-label="Enter your email address"
-              className="text-sm text-gray w-full mr-3 py-5 px-4 h-2 border bg-gray-background rounded mb-2"
+              className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="text"
               placeholder="Email address"
               value={emailAddress}
-              onChange={({ target }) =>
-                setEmailAddress(target.value.toLowerCase())
+              onChange={(event) =>
+                setEmailAddress(event.target.value.toLocaleLowerCase())
               }
             />
 
             <input
               aria-label="Enter your password"
-              className="text-sm text-gray w-full mr-3 py-5 px-4 h-2 border bg-gray-background rounded mb-2"
+              className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
               type="password"
               placeholder="Password"
               value={password}
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <button
               disabled={isValid}
               type="submit"
-              className={`bg-blue-500 text-white w-full rounded h-8 font-bold  ${
+              className={`h-8 w-full rounded bg-blue-500 font-bold text-white  ${
                 isValid ? 'cursor-not-allowed opacity-50' : 'active:bg-blue-300'
               }`}
             >
@@ -145,10 +150,10 @@ export default function SignUp() {
             </button>
           </form>
           {error && (
-            <p className="mb-4 text-xs text-red-500 text-center">{error}</p>
+            <p className="mb-4 text-center text-xs text-red-500">{error}</p>
           )}
         </div>
-        <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
+        <div className="flex w-full flex-col items-center justify-center border bg-white p-4">
           <p className="text-sm">
             Have an account?{` `}
             <Link to={ROUTES.LOGIN} className="text-blue-500">

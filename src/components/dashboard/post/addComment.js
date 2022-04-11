@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import UserContext from '../../context/userContext';
+import UserContext from '../../../context/userContext';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-import FirebaseContext from '../../context/firebaseContext';
+import FirebaseContext from '../../../context/firebaseContext';
 
 export default function AddComment({
   docId,
@@ -17,7 +17,7 @@ export default function AddComment({
   const handleSubmitComment = (event) => {
     event.preventDefault();
     setComments([{ comment, displayName: user.displayName }, ...comments]);
-    const document = doc(db, 'photos', docId);
+    const document = doc(db, 'posts', docId);
     updateDoc(document, {
       comments: arrayUnion({ displayName: user.displayName, comment: comment }),
     });
@@ -25,7 +25,7 @@ export default function AddComment({
   };
 
   return (
-    <div className="border-t border-gray">
+    <div className="border-gray border-t">
       <form
         className="flex w-full justify-between pl-0 pr-5"
         onSubmit={(event) =>
@@ -38,7 +38,7 @@ export default function AddComment({
         <input
           aria-label="Add a comment"
           autoComplete="off"
-          className="text-sm text-gray w-full mr-3 py-5 px-4"
+          className="text-gray mr-3 w-full py-5 px-4 text-sm"
           type="text"
           name="add-comment"
           placeholder="Add a comment..."

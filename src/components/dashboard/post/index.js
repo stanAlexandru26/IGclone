@@ -9,11 +9,10 @@ import Comments from './comments';
 export default function Post({ content }) {
   const commentInput = useRef(null);
   const handleFocus = () => commentInput.current.focus();
-
   return (
-    <div className="rounded border bg-white mb-8">
-      <Header username={content.username} userId={content.userId} />
-      <Image docId={content.docId} caption={content.caption} />
+    <div className="mb-8 rounded border bg-white">
+      <Header username={content.username} imageSrc={content.userImageSrc} />
+      <Image imageSrc={content.imageSrc} caption={content.caption} />
       <Actions
         docId={content.docId}
         totalLikes={content.likes.length}
