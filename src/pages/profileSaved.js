@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import ExploreTimeline from '../components/explore';
 import Header from '../components/header';
 
-export default function Explore() {
+export default function ProfileSaved() {
   useEffect(() => {
-    document.title = 'Explore - Instagram';
+    document.title = 'Saved - Instagram';
   }, []);
+
   return (
     <>
       <Header />
-      <ExploreTimeline />
+
+      saved
     </>
   );
 }

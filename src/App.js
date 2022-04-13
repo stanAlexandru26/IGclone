@@ -11,7 +11,7 @@ const PasswordReset = lazy(() => import('./pages/passwordReset'));
 const Profile = lazy(() => import('./pages/profile'));
 const NotFound = lazy(() => import('./pages/notFound'));
 const AccountSettingsPage = lazy(() => import('./pages/accountSettings'));
-const AccountSaved = lazy(() => import('./pages/accountSaved'));
+const ProfileSaved = lazy(() => import('./pages/profileSaved'));
 const Explore = lazy(() => import('./pages/Explore'));
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
             path={ROUTES.ACCOUNT_SAVED}
             element={
               <ProtectedRoute>
-                <AccountSaved />
+                <ProfileSaved />
               </ProtectedRoute>
             }
           />

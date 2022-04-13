@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from 'react';
 import UserContext from '../../../context/userContext';
 import FirebaseContext from '../../../context/firebaseContext';
@@ -6,13 +7,15 @@ import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 export default function Actions({
   docId,
   totalLikes,
-  likedPhoto,
+  likedPost,
   handleFocus,
+  savedPost,
 }) {
   const user = useContext(UserContext);
-  const [toggleLiked, setToggleLiked] = useState(likedPhoto);
+  const [toggleLiked, setToggleLiked] = useState(likedPost);
   const [likes, setLikes] = useState(totalLikes);
   const { db } = useContext(FirebaseContext);
+  const [toggleSaved, setToggleSaved] = useState(savedPost);
 
   const handleToggleLiked = async () => {
     setToggleLiked((toggleLiked) => !toggleLiked);
@@ -24,6 +27,16 @@ export default function Actions({
     });
 
     setLikes((likes) => (toggleLiked ? likes - 1 : likes + 1));
+  };
+
+  const handleToggleSaved = async () => {
+    setToggleSaved((toggleSaved) => !toggleSaved);
+
+    const document = await doc(db, 'posts', docId);
+
+    await updateDoc(document, {
+      savedUsers: toggleSaved ? arrayRemove(user.uid) : arrayUnion(user.uid),
+    });
   };
 
   return (
@@ -49,7 +62,7 @@ export default function Actions({
             />
           </svg>
           <svg
-            onClick={handleFocus}
+            onClick={() => handleToggleSaved((toggleSaved) => !toggleSaved)}
             className=" text-black-light w-6 cursor-pointer select-none hover:opacity-50"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -63,6 +76,27 @@ export default function Actions({
               strokeWidth={2}
               d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"
             />
+          </svg>
+        </div>
+        <div>
+          <svg
+            onClick={handleToggleSaved}
+            className={`hover:cursor-pointer hover:opacity-50 ${
+              toggleSaved ? 'fill-black' : 'fill-white'
+            }`}
+            aria-label="Save"
+            height="24"
+            role="img"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <polygon
+              points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            ></polygon>
           </svg>
         </div>
       </div>

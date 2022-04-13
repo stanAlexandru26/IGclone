@@ -13,10 +13,7 @@ export default function NewPostModal() {
   const { storage, db } = useContext(FirebaseContext);
   const user = useContext(UserContext);
   const { photoFirebaseUrl } = useFirebaseStorage(user.photoURL, 'avatar');
-  console.log(
-    '🚀 ~ file: NewPostModal.js ~ line 16 ~ NewPostModal ~ user',
-    user,
-  );
+
   const [file, setFile] = useState(null);
   const [imgCaption, setImgCaption] = useState('');
 
@@ -42,6 +39,7 @@ export default function NewPostModal() {
       userLongitude: '',
       dateCreated: Date.now(),
       imageSrc: '',
+      savedUsers: [],
     });
     const newPostRef = doc(db, `posts/${newPost.id}`);
     await updateDoc(newPostRef, {

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import {
   getCurrentUserFirestoreData,
   followUser,
-} from '../../utils/firebaseUilts';
-import useFirebaseStorage from '../../hooks/useFirebaseStorage';
-
+} from '../../../utils/firebaseUilts';
+import useFirebaseStorage from '../../../hooks/useFirebaseStorage';
 export default function SuggestedProfile({
   userDocId,
   username,
@@ -25,7 +24,7 @@ export default function SuggestedProfile({
 
   return !followed ? (
     <div className="flex items-center gap-3">
-      <Link to={`/p/${username}`}>
+      <Link to={`/${username}`}>
         <img
           className="h-8 w-8 rounded-full border-2"
           src={photoFirebaseUrl}
@@ -33,7 +32,7 @@ export default function SuggestedProfile({
         />
       </Link>
       <div className="flex flex-auto flex-col">
-        <Link to={`/p/${username}`}>
+        <Link to={`/${username}`}>
           <span className="text-sm font-semibold">{username}</span>
         </Link>
         <span className="text-xs text-gray-400">Followed by</span>

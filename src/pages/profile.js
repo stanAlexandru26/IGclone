@@ -11,6 +11,10 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = `${username} - Profile`;
+  }, []);
+
+  useEffect(() => {
     async function checkUserExistsToLoadProfile() {
       const doesUserExist = await getUserByUsername(username);
       if (!doesUserExist) {

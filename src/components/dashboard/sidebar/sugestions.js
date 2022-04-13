@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { memo, useState, useEffect } from 'react';
-import { getSuggestedProfiles } from '../../utils/firebaseUilts';
+import { getSuggestedProfiles } from '../../../utils/firebaseUilts';
 import ProfileSugestion from './profileSugestion';
 
 export default function Sugestions({ userId }) {

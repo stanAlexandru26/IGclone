@@ -35,11 +35,12 @@ async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
   }));
   const photosWithUserDetails = await Promise.all(
     photos.map(async (photo) => {
-      let userLikedPhoto = photo.likes.includes(userId) ? true : false;
+      let userLikedPost = photo.likes.includes(userId) ? true : false;
+      let userSavedPost = photo.savedUsers.includes(userId) ? true : false;
       const user = await getCurrentUserFirestoreData(photo.userId);
       const username = user[0].username;
       const userImageSrc = user[0].imageSrc;
-      return { username, ...photo, userLikedPhoto, userImageSrc };
+      return { username, ...photo, userLikedPost, userImageSrc, userSavedPost };
     }),
   );
 

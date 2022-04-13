@@ -1,6 +1,6 @@
 import React from 'react';
-import useUser from '../../hooks/useUser';
-import SidebarLoading from '../loading/sidebarLoading';
+import useUser from '../../../hooks/useUser';
+import SidebarLoading from '../../loading/sidebarLoading';
 import Sugestions from './sugestions';
 import User from './user';
 

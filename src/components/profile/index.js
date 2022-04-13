@@ -17,9 +17,6 @@ export default function UserProfile({ username }) {
     { profile, profilePhotos, profileFollowerCount, followers },
     dispatch,
   ] = useReducer(reducer, initialState);
-  useEffect(() => {
-    document.title = `${username} - Profile`;
-  }, []);
 
   useEffect(() => {
     async function getUserPhotos() {
