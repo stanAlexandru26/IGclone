@@ -7,3 +7,5 @@ export const PASSWORD_RESET = '/password-reset';
 export const ACCOUNT_SETTINGS = '/account-settings';
 export const ACCOUNT_SAVED = '/:username/saved';
 export const EXPLORE = '/explore';
+export const POST = '/p/:postId';
+export const ABOUT = '/about';
