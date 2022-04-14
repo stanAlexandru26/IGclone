@@ -3,8 +3,8 @@ import ProfilePost from './ProfilePost';
 
 export default function ProfileTimeline({ profilePhotos }) {
   return (
-    <div className="border-gray mt-12 h-16 border-t pt-4">
-      <div className="mt-4 mb-12 grid grid-cols-3 gap-8">
+    <div className="mx-auto w-8/12 ">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
         {!profilePhotos ? (
           <>
             <p>Add Photos</p>

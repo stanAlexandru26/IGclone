@@ -27,11 +27,9 @@ export default function Profile() {
   }, [username, navigate]);
 
   return userExists ? (
-    <div className="bg-gray">
+    <>
       <Header />
-      <div className="mx-auto max-w-screen-lg">
-        <UserProfile username={username} />
-      </div>
-    </div>
+      <UserProfile username={username} />
+    </>
   ) : null;
 }

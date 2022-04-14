@@ -12,7 +12,7 @@ const Profile = lazy(() => import('./pages/profile'));
 const NotFound = lazy(() => import('./pages/notFound'));
 const AccountSettingsPage = lazy(() => import('./pages/accountSettings'));
 const ProfileSaved = lazy(() => import('./pages/profileSaved'));
-const Explore = lazy(() => import('./pages/Explore'));
+const Explore = lazy(() => import('./pages/explore'));
 const Post = lazy(() => import('./pages/post'));
 const About = lazy(() => import('./pages/about'));
 
@@ -57,14 +57,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={ROUTES.EXPLORE}
-            element={
-              <ProtectedRoute>
-                <Explore />
-              </ProtectedRoute>
-            }
-          />
+          <Route path={ROUTES.EXPLORE} element={<Explore />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
