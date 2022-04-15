@@ -1,50 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import UserContext from '../../context/userContext';
-import { followUser, unfollowUser } from '../../utils/firebaseUilts';
+import React from 'react';
 import useUser from '../../hooks/useUser';
-import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
-export default function ProfileUserHeader({
-  photosCount,
-  followerCount,
-  setFollowerCount,
-  followers = [],
-  username,
-  profile,
-}) {
-  const firebaseUser = useContext(UserContext);
-  const firebaseUserTest = useUser();
-  console.log("🚀 ~ file: profileUserHeader.js ~ line 17 ~ firebaseUserTest", firebaseUserTest)
-  const [isFollowingProfile, setIsFollowingProfile] = useState(false);
-  const { photoFirebaseUrl } = useFirebaseStorage(profile.imageSrc, 'avatar');
-  const handleToggleFollow = async () => {
-    setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
-    setFollowerCount({
-      profileFollowerCount: isFollowingProfile
-        ? followerCount - 1
-        : followerCount + 1,
-    });
-    if (isFollowingProfile) {
-      await unfollowUser(
-        firebaseUserTest.docId,
-        firebaseUserTest.userId,
-        profile.docId,
-        profile.userId,
-      );
-    }
-    if (!isFollowingProfile) {
-      await followUser(
-        firebaseUserTest.docId,
-        firebaseUserTest.userId,
-        profile.docId,
-        profile.userId,
-      );
-    }
-  };
-  useEffect(() => {
-    const isFollowing = followers.includes(firebaseUser.uid);
-    setIsFollowingProfile(isFollowing);
-  }, [profile]);
+export default function SavedUserHeader() {
+
+    const user=useUser()
+    console.log("🚀 ~ file: savedUserHeader.js ~ line 7 ~ SavedUserHeader ~ user", user)
 
   return (
     <div className="mx-auto flex w-8/12  justify-center md:justify-start md:gap-8 md:px-12 ">

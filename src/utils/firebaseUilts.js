@@ -123,19 +123,18 @@ async function getAllExplorePosts() {
   return posts;
 }
 
-async function getExplorePostsForLoggedInUser(userId, followersArray) {
- 
-  //get all posts from firebase excluding the users that the user is following and the user posts
-  const q = query(collection(db, 'posts'), where(userId, '!in', followersArray));
+async function getSavedPosts(userId) {
+  const q = query(collection(db, 'posts'), where('savedUsers', 'array-contains', userId));
   const result = await getDocs(q);
+
   const posts = result.docs.map((item) => ({
     ...item.data(),
     docId: item.id,
   }));
 
   return posts;
-  
 }
+  
 
 export {
   getCurrentUserFirestoreData,
@@ -146,14 +145,5 @@ export {
   getUserByUsername,
   getUserPhotosByUsername,
   getAllExplorePosts,
-  getExplorePostsForLoggedInUser,
+  getSavedPosts,
 };
- // const q = query(collection(db, 'posts'), where(userId, 'in', followersArray));
-  // const result = await getDocs(q);
-
-  // const posts = result.docs.map((item) => ({
-  //   ...item.data(),
-  //   docId: item.id,
-  // }));
-
-  // return posts;

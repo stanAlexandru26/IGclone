@@ -2,7 +2,16 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../../../context/userContext';
 import FirebaseContext from '../../../context/firebaseContext';
-import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  query,
+  collection,
+  where,
+} from 'firebase/firestore';
+import useUser from '../../../hooks/useUser';
 
 export default function Actions({
   docId,
@@ -12,6 +21,8 @@ export default function Actions({
   savedPost,
 }) {
   const user = useContext(UserContext);
+  const userAdvanced=useUser()
+  console.log("🚀 ~ file: actions.js ~ line 25 ~ userAdvanced", userAdvanced)
   const [toggleLiked, setToggleLiked] = useState(likedPost);
   const [likes, setLikes] = useState(totalLikes);
   const { db } = useContext(FirebaseContext);
@@ -32,10 +43,13 @@ export default function Actions({
   const handleToggleSaved = async () => {
     setToggleSaved((toggleSaved) => !toggleSaved);
 
-    const document = await doc(db, 'posts', docId);
-
-    await updateDoc(document, {
+    const postDocument = await doc(db, 'posts', docId);
+    const userDocument = await doc(db, 'users', userAdvanced.docId);
+    await updateDoc(postDocument, {
       savedUsers: toggleSaved ? arrayRemove(user.uid) : arrayUnion(user.uid),
+    });
+    await updateDoc(userDocument, {
+      savedPosts: toggleSaved ? arrayRemove(docId) : arrayUnion(docId),
     });
   };
 

@@ -44,6 +44,7 @@ export default function NewPostModal() {
     const newPostRef = doc(db, `posts/${newPost.id}`);
     await updateDoc(newPostRef, {
       imageSrc: `${newPost.id}.jpg`,
+      docId: `${newPost.id}`,
     });
 
     const storageRef = ref(storage, `images/${newPost.id}.jpg`);

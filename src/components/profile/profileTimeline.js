@@ -12,7 +12,7 @@ export default function ProfileTimeline({ profilePhotos }) {
         ) : profilePhotos && profilePhotos.length > 0 ? (
           profilePhotos &&
           profilePhotos.map((photo) => (
-            <ProfilePost key={photo.id} photo={photo} />
+            <ProfilePost key={photo.docId} photo={photo} />
           ))
         ) : null}
       </div>

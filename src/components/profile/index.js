@@ -5,6 +5,7 @@ import {
   getUserByUsername,
   getUserPhotosByUsername,
 } from '../../utils/firebaseUilts';
+import Navbar from './Navbar';
 
 const reducer = (state, newState) => ({ ...state, ...newState });
 const initialState = {
@@ -43,6 +44,7 @@ export default function UserProfile({ username }) {
         setFollowerCount={dispatch}
         username={username}
       />
+      <Navbar active={'profile'} profileUrl={profile.username} />
       <ProfileTimeline profilePhotos={profilePhotos} />
     </>
   );
