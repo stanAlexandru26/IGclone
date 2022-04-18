@@ -12,10 +12,10 @@ export default function HeaderUserAction({ user }) {
 
   const { photoFirebaseUrl } = useFirebaseStorage(user.photoURL, 'avatar');
   return (
-    <div className="relative flex cursor-pointer items-center">
+    <div className="relative flex min-w-max cursor-pointer items-center">
       <Link to={`/p/${user.displayName}`} />
       <img
-        className={`h-8 w-8 rounded-full ${
+        className={`h-8 w-8 rounded-full  ${
           visible ? 'ring-1 ring-neutral-600 ring-offset-2' : null
         } `}
         src={photoFirebaseUrl}
@@ -102,7 +102,7 @@ export default function HeaderUserAction({ user }) {
             </Link>
 
             <Link
-              to={ROUTES.ACCOUNT_SETTINGS}
+              to={ROUTES.ACCOUNT_SETTINGS_EDIT}
               className="flex items-center gap-2 px-4 py-2 text-sm active:bg-gray-200"
             >
               <svg

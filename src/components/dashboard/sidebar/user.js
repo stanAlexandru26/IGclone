@@ -12,7 +12,7 @@ export default function User({ username, fullName, imageSrc }) {
             <img
               src={photoFirebaseUrl}
               alt="Profile avatar"
-              className="w-16 rounded-full"
+              className="h-16 w-16 rounded-full"
             />
             <div className="flex flex-col ">
               <span className="font-semibold">{username}</span>

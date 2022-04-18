@@ -6,6 +6,7 @@ export default function AccountSettingsPage() {
   useEffect(() => {
     document.title = 'Settings - Instagram';
   }, []);
+
   return (
     <>
       <Header />

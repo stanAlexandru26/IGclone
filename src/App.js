@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import AccountEdit from './components/account-settings/AccountEdit';
+import AccountPassword from './components/account-settings/AccountPassword';
 import * as ROUTES from './constants/routes';
 import UserContext from './context/userContext';
 import useAuthListener from './hooks/useAuth';
@@ -48,18 +50,42 @@ function App() {
                 <AccountSettingsPage />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path={ROUTES.ACCOUNT_SAVED}
-            element={
-              <ProtectedRoute>
-                <ProfileSaved />
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route
+              path={ROUTES.ACCOUNT_SETTINGS_EDIT}
+              index
+              element={
+                <ProtectedRoute>
+                  <AccountEdit />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ACCOUNT_SETTINGS_PASSWORD}
+              element={
+                <ProtectedRoute>
+                  <AccountPassword />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={<Navigate to={ROUTES.ACCOUNT_SETTINGS_EDIT} replace />}
+            />
+          </Route>
+
           <Route path={ROUTES.EXPLORE} element={<Explore />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
-          <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.PROFILE} element={<Profile />}>
+            <Route
+              path={ROUTES.ACCOUNT_SAVED}
+              element={
+                <ProtectedRoute>
+                  <ProfileSaved />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
           <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
