@@ -7,7 +7,7 @@ export default function User({ username, fullName, imageSrc }) {
   return (
     <>
       <div>
-        <Link to={`/${username}`}>
+        <Link to={`/${username}/posts`}>
           <div className="flex items-center gap-6">
             <img
               src={photoFirebaseUrl}

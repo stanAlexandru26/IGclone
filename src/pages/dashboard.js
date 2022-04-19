@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Header from '../components/header';
-import Timeline from '../components/dashboard/timeline';
-import Sidebar from '../components/dashboard/sidebar';
+import { Outlet } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function DashboardPage() {
+  
   useEffect(() => {
     document.title = 'Instagram';
   }, []);
@@ -11,10 +11,8 @@ export default function Dashboard() {
   return (
     <div className="h-screen w-screen">
       <Header />
-      <div className="mx-auto grid max-w-screen-lg grid-cols-3 justify-between gap-7">
-        <Timeline />
-        <Sidebar />
-      </div>
+
+      <Outlet />
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function Header({ username, imageSrc }) {
   return (
     <div className="flex border-b p-4">
       <div className="flex items-center">
-        <Link to={`/${username}`} className="flex items-center">
+        <Link to={`/${username}/posts`} className="flex items-center">
           <img
             className="mr-3 flex h-8 w-8 rounded-full"
             src={photoFirebaseUrl}

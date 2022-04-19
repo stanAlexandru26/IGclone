@@ -24,7 +24,7 @@ export default function SuggestedProfile({
 
   return !followed ? (
     <div className="flex items-center gap-3">
-      <Link to={`/${username}`}>
+      <Link to={`/${username}/posts`}>
         <img
           className="h-8 w-8 rounded-full border-2"
           src={photoFirebaseUrl}
@@ -32,7 +32,7 @@ export default function SuggestedProfile({
         />
       </Link>
       <div className="flex flex-auto flex-col">
-        <Link to={`/${username}`}>
+        <Link to={`/${username}/posts`}>
           <span className="text-sm font-semibold">{username}</span>
         </Link>
         <span className="text-xs text-gray-400">Followed by</span>

@@ -13,7 +13,7 @@ export default function Header() {
   const { objectReference, visible, setVisible } = useOutsideClick(false);
 
   return (
-    <header className="w-screen border-b bg-white md:mb-8">
+    <header className="mb-4 w-screen border-b bg-white md:mb-8">
       <div className=" mx-auto h-14 w-8/12">
         <div className="mx-auto flex h-full items-center justify-between ">
           <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">

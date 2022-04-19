@@ -1,25 +1,23 @@
 import React from 'react';
-import ProfilePost from './ProfilePost';
+import ProfileTimelinePost from './ProfileTimelinePost';
 
-export default function ProfileTimeline({ profilePhotos }) {
+export default function ProfileTimeline({ posts }) {
   return (
     <div className="mx-auto w-8/12 ">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
-        {!profilePhotos ? (
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-4">
+        {!posts ? (
           <>
-            <p>Add Photos</p>
+            <p>Add Posts</p>
           </>
-        ) : profilePhotos && profilePhotos.length > 0 ? (
-          profilePhotos &&
-          profilePhotos.map((photo) => (
-            <ProfilePost key={photo.docId} photo={photo} />
-          ))
+        ) : posts && posts.length > 0 ? (
+          posts &&
+          posts.map((photo) => <ProfileTimelinePost key={photo.docId} photo={photo} />)
         ) : null}
       </div>
 
-      {!profilePhotos ||
-        (profilePhotos && profilePhotos.length === 0 && (
-          <p className="text-center text-2xl">No Photos Yet</p>
+      {!posts ||
+        (posts && posts.length === 0 && (
+          <p className="text-center text-2xl">No Posts Yet</p>
         ))}
     </div>
   );

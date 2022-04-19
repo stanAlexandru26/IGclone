@@ -1,26 +1,28 @@
 import React, { useEffect, useReducer } from 'react';
-import ProfileUserHeader from './profileUserHeader';
-import ProfileTimeline from './profileTimeline';
+import { Outlet } from 'react-router-dom';
+import ProfileHeader from './ProfileHeader';
+import ProfileNavbar from './ProfileNavbar';
 import {
   getUserByUsername,
   getUserPhotosByUsername,
 } from '../../utils/firebaseUilts';
-import Navbar from './Navbar';
 
 const reducer = (state, newState) => ({ ...state, ...newState });
+
 const initialState = {
   profile: {},
   photosCollection: null,
   profileFollowerCount: 0,
 };
-export default function UserProfile({ username }) {
+
+export default function Profile({ username, isLoggedInUser }) {
   const [
     { profile, profilePhotos, profileFollowerCount, followers },
     dispatch,
   ] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    async function getUserPhotos() {
+    async function getUserData() {
       const [{ ...user }] = await getUserByUsername(username);
       const photos = await getUserPhotosByUsername(username);
 
@@ -31,21 +33,25 @@ export default function UserProfile({ username }) {
         followers: user.followers,
       });
     }
-    getUserPhotos();
+    getUserData();
   }, [username]);
 
   return (
     <>
-      <ProfileUserHeader
+      <ProfileHeader
         photosCount={profilePhotos ? profilePhotos.length : 0}
         profile={profile}
         followerCount={profileFollowerCount}
         followers={followers}
         setFollowerCount={dispatch}
         username={username}
+        isLoggedInUser={isLoggedInUser}
       />
-      <Navbar active={'profile'} profileUrl={profile.username} />
-      <ProfileTimeline profilePhotos={profilePhotos} />
+      <ProfileNavbar
+        isLoggedInUser={isLoggedInUser}
+        profileUrl={profile.username}
+      />
+      <Outlet />
     </>
   );
 }

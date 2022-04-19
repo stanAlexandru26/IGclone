@@ -21,8 +21,8 @@ export default function Actions({
   savedPost,
 }) {
   const user = useContext(UserContext);
-  const userAdvanced=useUser()
-  console.log("🚀 ~ file: actions.js ~ line 25 ~ userAdvanced", userAdvanced)
+  const userAdvanced = useUser();
+  console.log('🚀 ~ file: actions.js ~ line 25 ~ userAdvanced', userAdvanced);
   const [toggleLiked, setToggleLiked] = useState(likedPost);
   const [likes, setLikes] = useState(totalLikes);
   const { db } = useContext(FirebaseContext);

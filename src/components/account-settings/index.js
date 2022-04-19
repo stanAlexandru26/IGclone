@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 export default function AccountSettings() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [editActive, setEditActive] = useState(false);
   const [passwordActive, setPasswordActive] = useState(false);
+
+  /* Redirect */
+
+  useEffect(() => {
+    if (
+      location.pathname.includes('edit') ||
+      location.pathname.includes('password')
+    ) {
+      return;
+    } else {
+      navigate(`${ROUTES.ACCOUNT_SETTINGS}/edit`);
+    }
+  }, [location]);
+
+  /* Navbar Logic */
 
   useEffect(() => {
     if (location.pathname === ROUTES.ACCOUNT_SETTINGS_EDIT) {

@@ -32,7 +32,7 @@ export default function HeaderUserAction({ user }) {
         <div className="flex flex-col  divide-y divide-gray-200   ">
           <ul className="z-50 flex flex-col  justify-center rounded-lg  ">
             <Link
-              to={`/${user.displayName}`}
+              to={`/${user.displayName}/posts`}
               className="flex items-center gap-2 px-4 py-2 text-sm active:bg-gray-200 "
             >
               <svg

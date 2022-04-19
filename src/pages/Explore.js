@@ -1,46 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
 import useUser from '../hooks/useUser';
 import { getAllExplorePosts } from '../utils/firebaseUilts';
-import ProfileTimeline from '../components/profile/profileTimeline';
+import ProfileTimeline from '../components/profile/ProfileTimeline';
 
 export default function Explore() {
-  const [posts, setPosts] = useState([]);
-  const [sortedPosts, setSortedPosts] = useState([]);
+  const [postsArray, setPostsArray] = useState([]);
+
+  const [sortedPostsArray, setSortedPostsArray] = useState([]);
   useEffect(() => {
     document.title = 'Explore - Instagram';
   }, []);
+
   const user = useUser();
 
   useEffect(() => {
     getAllExplorePosts().then((posts) => {
-      setPosts(posts);
+      setPostsArray(posts);
     });
   }, []);
 
   useEffect(() => {
     if (user) {
-      setSortedPosts(arraySorter(posts, user.userId, user.following));
+      const filteredPosts = postsArray.filter((post) => {
+        return (
+          post.userId !== user.userId && !user.following.includes(post.userId)
+        );
+      });
+      setSortedPostsArray(filteredPosts);
     }
-  }, [posts]);
-
-  const arraySorter = (postsArray, userId, followingArray) => {
-    const filteredArray = postsArray.filter((post) => {
-      if (post.userId === userId) {
-        return false;
-      }
-      if (followingArray.includes(post.userId)) {
-        return false;
-      }
-      return true;
-    });
-    return filteredArray;
-  };
+  }, [postsArray, user]);
 
   return (
     <>
-      <Header />
-      <ProfileTimeline profilePhotos={user ? sortedPosts : posts} />
+      <ProfileTimeline posts={user ? sortedPostsArray : postsArray} />
     </>
   );
 }

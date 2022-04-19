@@ -4,19 +4,21 @@ import { followUser, unfollowUser } from '../../utils/firebaseUilts';
 import useUser from '../../hooks/useUser';
 import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 
-export default function ProfileUserHeader({
+export default function ProfileHeader({
   photosCount,
   followerCount,
   setFollowerCount,
   followers = [],
   username,
   profile,
+  isLoggedInUser,
 }) {
   const firebaseUser = useContext(UserContext);
   const firebaseUserTest = useUser();
-  console.log("🚀 ~ file: profileUserHeader.js ~ line 17 ~ firebaseUserTest", firebaseUserTest)
+
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
   const { photoFirebaseUrl } = useFirebaseStorage(profile.imageSrc, 'avatar');
+
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
     setFollowerCount({
@@ -41,6 +43,7 @@ export default function ProfileUserHeader({
       );
     }
   };
+
   useEffect(() => {
     const isFollowing = followers.includes(firebaseUser.uid);
     setIsFollowingProfile(isFollowing);
@@ -66,11 +69,11 @@ export default function ProfileUserHeader({
               src={photoFirebaseUrl}
             />
           </div>
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+          <div className="flex flex-col justify-center gap-2 md:flex-row md:items-center md:justify-start md:gap-4">
             <p className="text-2xl ">{username}</p>
             <button
               className={`h-8 w-20 rounded bg-blue-500 text-sm font-bold text-white ${
-                firebaseUser.uid === profile.userId ? 'hidden' : ''
+                isLoggedInUser ? 'hidden' : ''
               }`}
               type="button"
               onClick={handleToggleFollow}

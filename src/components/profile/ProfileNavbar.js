@@ -1,21 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Navbar({ active, isUser, profileUrl }) {
+export default function ProfileNavbar({ isLoggedInUser, profileUrl }) {
+  const location = useLocation();
+  const [activeProfile, setActiveProfile] = useState(false);
+  const [activeSaved, setActiveSaved] = useState(false);
+  const [activeTagged, setActiveTagged] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname.includes('posts')) {
+      setActiveProfile(true);
+      setActiveSaved(false);
+      setActiveTagged(false);
+    } else if (location.pathname.includes('saved')) {
+      setActiveSaved(true);
+      setActiveTagged(false);
+      setActiveProfile(false);
+    } else if (location.pathname.includes('tagged')) {
+      setActiveTagged(true);
+      setActiveProfile(false);
+      setActiveSaved(false);
+    } else {
+      setActiveProfile(false);
+      setActiveSaved(false);
+      setActiveTagged(false);
+    }
+  }, [location]);
+
   return (
     <div className="mx-auto mb-4 flex w-8/12 flex-row justify-evenly border-b md:my-8 md:border-t md:border-b-0">
+      {/* Post */}
       <div
         className={` flex h-full basis-1/3 justify-center  border-t  border-transparent  p-4  ${
-          active === 'profile' ? 'md:border-black' : ''
+          activeProfile ? 'md:border-black' : ''
         }`}
       >
-        <Link to={`/${profileUrl}`}>
+        <Link to={`/${profileUrl}/posts`}>
           <div className="flex flex-row items-center gap-2   ">
             <svg
               className={`h-6 w-6  md:h-4 md:w-4  ${
-                active == 'profile'
-                  ? 'text-blue-500 md:text-black'
-                  : 'text-slate-500'
+                activeProfile ? 'text-blue-500 md:text-black' : 'text-slate-500'
               }`}
               color="#262626"
               fill="#262626"
@@ -79,7 +103,7 @@ export default function Navbar({ active, isUser, profileUrl }) {
             </svg>
             <h1
               className={`hidden text-xs font-semibold uppercase md:block ${
-                active == 'profile' ? '' : 'text-slate-500'
+                activeProfile ? '' : 'text-slate-500'
               }`}
             >
               Posts
@@ -87,20 +111,18 @@ export default function Navbar({ active, isUser, profileUrl }) {
           </div>
         </Link>
       </div>
-
-      {isUser && (
+      {/* Saved */}
+      {isLoggedInUser && (
         <div
           className={` flex h-full basis-1/3 justify-center  border-t  border-transparent  p-4  ${
-            active === 'saved' ? 'md:border-black' : ''
+            activeSaved ? 'md:border-black' : ''
           }`}
         >
           <Link to={`/${profileUrl}/saved`}>
             <div className="flex flex-row items-center gap-2">
               <svg
                 className={`h-6 w-6  md:h-4 md:w-4  ${
-                  active == 'saved'
-                    ? 'text-blue-500 md:text-black'
-                    : 'text-slate-500'
+                  activeSaved ? 'text-blue-500 md:text-black' : 'text-slate-500'
                 }`}
                 fill="#8e8e8e"
                 role="img"
@@ -118,7 +140,7 @@ export default function Navbar({ active, isUser, profileUrl }) {
               </svg>
               <h1
                 className={`hidden text-xs font-semibold uppercase md:block ${
-                  active == 'saved' ? '' : 'text-slate-500'
+                  activeSaved ? '' : 'text-slate-500'
                 }`}
               >
                 Saved
@@ -127,19 +149,17 @@ export default function Navbar({ active, isUser, profileUrl }) {
           </Link>
         </div>
       )}
-
+      {/* Tagged */}
       <div
         className={` flex h-full basis-1/3 justify-center  border-t  border-transparent  p-4  ${
-          active === 'tagged' ? 'md:border-black' : ''
+          activeTagged ? 'md:border-black' : ''
         }`}
       >
         <Link to={''}>
           <div className="flex flex-row items-center gap-2 ">
             <svg
               className={`h-6 w-6  md:h-4 md:w-4  ${
-                active == 'tagged'
-                  ? 'text-blue-500 md:text-black'
-                  : 'text-slate-500'
+                activeTagged ? 'text-blue-500 md:text-black' : 'text-slate-500'
               }`}
               fill="#8e8e8e"
               height="12"
@@ -175,7 +195,7 @@ export default function Navbar({ active, isUser, profileUrl }) {
             </svg>
             <h1
               className={`hidden text-xs font-semibold uppercase md:block ${
-                active == 'tagged' ? '' : 'text-slate-500'
+                activeTagged ? '' : 'text-slate-500'
               }`}
             >
               Tagged

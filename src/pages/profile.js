@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import Header from '../components/header';
-import UserProfile from '../components/profile/index.js';
+import Profile from '../components/profile/index.js';
 import { getUserByUsername } from '../utils/firebaseUilts';
+import UserContext from '../context/userContext';
 
-export default function Profile() {
+export default function ProfilePage() {
   const { username } = useParams();
-  const [userExists, setUserExists] = useState(undefined);
   const navigate = useNavigate();
+
+  const LoggedInUser = useContext(UserContext);
+
+  const [userExists, setUserExists] = useState(undefined);
+  const [isLoggedInUser, setIsLoggedInUser] = useState(undefined);
 
   useEffect(() => {
     document.title = `${username} - Profile`;
   }, []);
+
+  // User Check //
 
   useEffect(() => {
     async function checkUserExistsToLoadProfile() {
@@ -24,12 +30,20 @@ export default function Profile() {
       }
     }
     checkUserExistsToLoadProfile();
-  }, [username, navigate]);
+  }, [username]);
+
+  // Logged In User Check //
+  useEffect(() => {
+    if (LoggedInUser.displayName === username) {
+      setIsLoggedInUser(true);
+    } else {
+      setIsLoggedInUser(false);
+    }
+  }, [LoggedInUser, username]);
 
   return userExists ? (
     <>
-      <Header />
-      <UserProfile username={username} />
+      <Profile username={username} isLoggedInUser={isLoggedInUser} />
     </>
   ) : null;
 }

@@ -25,7 +25,7 @@ export default function Comments({
               key={`${item.comment}-${item.displayName}`}
               className="flex items-center gap-2"
             >
-              <Link to={`/${item.displayName}`}>
+              <Link to={`/${item.displayName}/posts`}>
                 <span className="font-semibold ">{item.displayName}</span>
               </Link>
               <span className="text-sm">{item.comment}</span>

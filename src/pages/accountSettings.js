@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Header from '../components/header';
 import AccountSettings from '../components/account-settings';
 
 export default function AccountSettingsPage() {
@@ -9,7 +8,6 @@ export default function AccountSettingsPage() {
 
   return (
     <>
-      <Header />
       <AccountSettings />
     </>
   );

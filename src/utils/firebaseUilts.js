@@ -7,6 +7,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  getDoc,
 } from 'firebase/firestore';
 
 import { db } from '../firebase/firebase';
@@ -124,7 +125,10 @@ async function getAllExplorePosts() {
 }
 
 async function getSavedPosts(userId) {
-  const q = query(collection(db, 'posts'), where('savedUsers', 'array-contains', userId));
+  const q = query(
+    collection(db, 'posts'),
+    where('savedUsers', 'array-contains', userId),
+  );
   const result = await getDocs(q);
 
   const posts = result.docs.map((item) => ({
@@ -134,7 +138,15 @@ async function getSavedPosts(userId) {
 
   return posts;
 }
-  
+
+async function getPostData(postId) {
+  const q = doc(db, 'posts', postId);
+  const result = await getDoc(q);
+
+  const post = result.data();
+
+  return post;
+}
 
 export {
   getCurrentUserFirestoreData,
@@ -146,4 +158,5 @@ export {
   getUserPhotosByUsername,
   getAllExplorePosts,
   getSavedPosts,
+  getPostData,
 };
