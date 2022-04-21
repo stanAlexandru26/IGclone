@@ -10,7 +10,7 @@ const PasswordReset = lazy(() => import('./pages/passwordReset'));
 const NotFound = lazy(() => import('./pages/notFound'));
 const About = lazy(() => import('./pages/about'));
 
-const DashboardPage = lazy(() => import('./pages/dashboard'));
+const MainPage = lazy(() => import('./pages/main'));
 const Dashboard = lazy(() => import('./components/dashboard'));
 
 const ProfilePage = lazy(() => import('./pages/profile'));
@@ -25,7 +25,7 @@ const AccountPassword = lazy(() =>
 );
 
 const Explore = lazy(() => import('./pages/explore'));
-const Post = lazy(() => import('./pages/post'));
+const SinglePost = lazy(() => import('./pages/post'));
 
 function App() {
   const { user } = useAuthListener();
@@ -48,11 +48,12 @@ function App() {
             path={ROUTES.DASHBOARD}
             element={
               <ProtectedRoute>
-                <DashboardPage />
+                <MainPage />
               </ProtectedRoute>
             }
           >
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+            <Route path={ROUTES.POST} element={<SinglePost />} />
 
             <Route path={ROUTES.ABOUT} element={<About />} />
             <Route path={ROUTES.EXPLORE} element={<Explore />} />
@@ -85,7 +86,6 @@ function App() {
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
           <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
-          <Route path={ROUTES.POST} element={<Post />} />
         </Routes>
       </Suspense>
     </UserContext.Provider>

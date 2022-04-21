@@ -11,7 +11,7 @@ export default function ProfileTimeline({ posts }) {
           </>
         ) : posts && posts.length > 0 ? (
           posts &&
-          posts.map((photo) => <ProfileTimelinePost key={photo.docId} photo={photo} />)
+          posts.map((photo) => <ProfileTimelinePost key={photo.docId} photo={photo} postsArray={posts} />)
         ) : null}
       </div>
 

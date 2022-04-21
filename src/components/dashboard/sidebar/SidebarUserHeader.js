@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useFirebaseStorage from '../../../hooks/useFirebaseStorage';
 
-export default function User({ username, fullName, imageSrc }) {
+export default function SidebarUserHeader({ username, fullName, imageSrc }) {
   const { photoFirebaseUrl } = useFirebaseStorage(imageSrc, 'avatar');
   return (
     <>

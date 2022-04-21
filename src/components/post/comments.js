@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import AddComment from './addComment';
-import moment from 'moment';
 
-export default function Comments({
-  docId,
-  comments: allComments,
-  postedDate,
-  commentInput,
-}) {
-  const [comments, setComments] = useState(allComments);
-
+export default function Comments({ comments }) {
   return (
     <>
       <div className="p-4 pt-1 ">
@@ -32,17 +23,7 @@ export default function Comments({
             </p>
           ))}
         </div>
-        <p className="mt-2 text-xs uppercase text-gray-400">
-          {moment(postedDate).fromNow()}
-        </p>
       </div>
-
-      <AddComment
-        docId={docId}
-        comments={comments}
-        setComments={setComments}
-        commentInput={commentInput}
-      />
     </>
   );
 }

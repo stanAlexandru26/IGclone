@@ -1,17 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from 'react';
-import UserContext from '../../../context/userContext';
-import FirebaseContext from '../../../context/firebaseContext';
-import {
-  doc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  query,
-  collection,
-  where,
-} from 'firebase/firestore';
-import useUser from '../../../hooks/useUser';
+import UserContext from '../../context/userContext';
+import FirebaseContext from '../../context/firebaseContext';
+import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import useUser from '../../hooks/useUser';
 
 export default function Actions({
   docId,
@@ -22,7 +13,6 @@ export default function Actions({
 }) {
   const user = useContext(UserContext);
   const userAdvanced = useUser();
-  console.log('🚀 ~ file: actions.js ~ line 25 ~ userAdvanced', userAdvanced);
   const [toggleLiked, setToggleLiked] = useState(likedPost);
   const [likes, setLikes] = useState(totalLikes);
   const { db } = useContext(FirebaseContext);
@@ -76,7 +66,7 @@ export default function Actions({
             />
           </svg>
           <svg
-            onClick={() => handleToggleSaved((toggleSaved) => !toggleSaved)}
+            onClick={handleFocus}
             className=" text-black-light w-6 cursor-pointer select-none hover:opacity-50"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

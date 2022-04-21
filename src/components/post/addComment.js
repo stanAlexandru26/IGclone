@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import UserContext from '../../../context/userContext';
+import UserContext from '../../context/userContext';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-import FirebaseContext from '../../../context/firebaseContext';
+import FirebaseContext from '../../context/firebaseContext';
 
 export default function AddComment({
   docId,
@@ -27,7 +27,7 @@ export default function AddComment({
   return (
     <div className="border-gray border-t">
       <form
-        className="flex w-full justify-between pl-0 pr-5"
+        className="flex  justify-between pl-0 pr-5"
         onSubmit={(event) =>
           comment.length >= 3
             ? handleSubmitComment(event)
