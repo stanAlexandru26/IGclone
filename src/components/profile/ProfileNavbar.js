@@ -86,7 +86,7 @@ export default function ProfileNavbar({ isLoggedInUser, profileUrl }) {
           activeTagged ? 'md:border-black' : ''
         }`}
       >
-        <Link to={''}>
+        <Link to={`/${profileUrl}/posts`}>
           <div className="flex flex-row items-center gap-2 ">
             <ProfileNavbarTaggedIcon
               className={`h-6 w-6  md:h-4 md:w-4  ${

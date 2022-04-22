@@ -18,18 +18,22 @@ export default function SignUp() {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const auth = getAuth();
 
+
+  useEffect(() => {
+    document.title = 'Sign Up - Instagram';
+  }, []);
+
+  
   const isValid =
     username === '' ||
     fullName === '' ||
     password === '' ||
     emailAddress === '';
 
-  const auth = getAuth();
 
-  useEffect(() => {
-    document.title = 'Sign Up - Instagram';
-  }, []);
+  
 
   async function checkUserNameTaken(username) {
     const q = query(collection(db, 'users'), where('username', '==', username));
@@ -82,12 +86,15 @@ export default function SignUp() {
 
   return (
     <div className="container mx-auto flex h-screen max-w-xs items-center">
+      {/* SignUp component */}
       <div className="flex flex-col">
+        {/* Header */}
         <div className="mb-4 flex flex-col items-center  border bg-white p-8">
           <IconLogo />
           <h1 className="my-3 text-center  font-semibold text-gray-400">
             Sign up to see photos and videos from your friends.
           </h1>
+          {/* Log with Facebook button */}
           <button
             className={
               'flex h-8 w-full items-center justify-center gap-2 rounded bg-blue-500 font-semibold text-white active:opacity-50'
@@ -103,7 +110,9 @@ export default function SignUp() {
             </span>
             <div className="grow border-t border-gray-400"></div>
           </div>
+          {/* SignUp form */}
           <form onSubmit={handleSignUp} method="POST">
+            {/* UserName */}
             <input
               aria-label="Enter your username"
               className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -112,6 +121,7 @@ export default function SignUp() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
+            {/* FullName */}
             <input
               aria-label="Enter your full name"
               className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -120,6 +130,7 @@ export default function SignUp() {
               value={fullName}
               onChange={(event) => setFullName(event.target.value)}
             />
+            {/* EmailAddress */}
             <input
               aria-label="Enter your email address"
               className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -130,7 +141,7 @@ export default function SignUp() {
                 setEmailAddress(event.target.value.toLocaleLowerCase())
               }
             />
-
+            {/* Password */}
             <input
               aria-label="Enter your password"
               className="text-gray bg-gray-background mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -139,6 +150,7 @@ export default function SignUp() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
+            {/* SignUp button */}
             <button
               disabled={isValid}
               type="submit"
@@ -149,10 +161,12 @@ export default function SignUp() {
               Sign Up
             </button>
           </form>
+          {/* Error */}
           {error && (
             <p className="mb-4 text-center text-xs text-red-500">{error}</p>
           )}
         </div>
+        {/* LogIn */}
         <div className="flex w-full flex-col items-center justify-center border bg-white p-4">
           <p className="text-sm">
             Have an account?{` `}

@@ -25,8 +25,8 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="flex h-screen w-screen items-center">
-      <div className="mx-auto w-1/4 rounded-sm border ">
+    <div className="container mx-auto flex h-screen max-w-xs items-center justify-center ">
+      <div className="border">
         <div className="flex flex-col items-center justify-center gap-3 p-6 ">
           <IconLock />
           <h1 className=" font-semibold "> Trouble Logging In?</h1>
@@ -68,7 +68,7 @@ export default function Login() {
             <Link to={ROUTES.SIGN_UP}>Create New Account</Link>
           </p>
         </div>
-        <div className="flex w-full flex-col items-center justify-center border bg-white p-4">
+        <div className="flex w-full flex-col items-center justify-center border-t bg-white p-4">
           <p className="">
             <Link to={ROUTES.LOGIN} className="font-semibold">
               Back to Login

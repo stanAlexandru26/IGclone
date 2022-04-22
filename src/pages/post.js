@@ -27,8 +27,15 @@ export default function SinglePost() {
           ...data,
           userImageSrc: userData[0].imageSrc,
           username: userData[0].username,
-          userLikedPost: data.likes.includes(loggedInUser.uid),
-          userSavedPost: data.savedUsers.includes(loggedInUser.uid),
+          userLikedPost:
+            loggedInUser && data.likes.includes(loggedInUser.uid)
+              ? true
+              : false,
+          userSavedPost:
+            loggedInUser && data.savedUsers.includes(loggedInUser.uid)
+              ? true
+              : false,
+          docId: postId,
         });
       }
     };

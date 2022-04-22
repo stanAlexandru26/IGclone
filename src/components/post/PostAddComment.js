@@ -43,7 +43,7 @@ export default function PostAddComment({
           name="add-comment"
           placeholder="Add a comment..."
           value={comment}
-          onChange={({ target }) => setComment(target.value)}
+          onChange={(event) => setComment(event.target.value)}
           ref={commentInput}
         />
         <button

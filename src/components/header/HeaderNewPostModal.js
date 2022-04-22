@@ -77,7 +77,7 @@ export default function HeaderNewPostModal() {
               {/*content*/}
               <div
                 ref={objectReference}
-                className="relative flex h-5/6 w-6/12 flex-col rounded-lg border-0 bg-white  shadow-lg outline-none focus:outline-none"
+                className="relative flex h-3/6 w-8/12  flex-col rounded-lg border-0 bg-white shadow-lg outline-none  focus:outline-none md:h-5/6 md:w-6/12"
               >
                 {/*header*/}
                 <div className="flex items-center justify-center border-b py-2 px-6  ">
@@ -128,7 +128,7 @@ export default function HeaderNewPostModal() {
                               className=" object-fill"
                             />
                           </div>
-                          <div className="flex basis-5/12 flex-col gap-10 p-4 ">
+                          <div className="flex  flex-col gap-10 p-4 md:basis-5/12 ">
                             <div className="flex items-center gap-5">
                               <img
                                 src={photoFirebaseUrl}

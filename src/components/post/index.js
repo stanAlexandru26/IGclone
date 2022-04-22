@@ -30,10 +30,7 @@ export default function Post({ content, horizontal }) {
             savedPost={content.userSavedPost}
           />
           <PostFooter username={content.username} caption={content.caption} />
-          <PostComments
-            docId={content.docId}
-            comments={comments}
-          />
+          <PostComments docId={content.docId} comments={comments} />
           <PostDate postedDate={content.dateCreated} />
           <PostAddComment
             docId={content.docId}
@@ -61,10 +58,7 @@ export default function Post({ content, horizontal }) {
               />
             </div>
             <div className="order-3 grow  ">
-              <PostComments
-                docId={content.docId}
-                comments={comments}
-              />
+              <PostComments docId={content.docId} comments={comments} />
             </div>
             <div className="order-4 basis-1/12">
               <PostActions

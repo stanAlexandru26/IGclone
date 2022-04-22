@@ -17,9 +17,9 @@ export default function Header() {
   return (
     <header className="mb-4 w-screen border-b bg-white md:mb-8">
       <div className=" mx-auto h-14 w-8/12">
-        <div className="mx-auto flex h-full items-center justify-between ">
+        <div className="mx-auto flex h-full items-center justify-between gap-4 ">
           <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
-            <img src={LogInLogo} alt="Instagram" className="mt-2 w-6/12" />
+            <img src={LogInLogo} alt="Instagram" className="mt-2 w-24 sm:w-6/12" />
           </Link>
 
           <div className="text-gray align-items flex items-center text-center">

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
@@ -45,31 +46,43 @@ function App() {
     <UserContext.Provider value={user}>
       <Suspense fallback={<PageLoading />}>
         <Routes>
-          <Route
-            path={ROUTES.DASHBOARD}
-            element={
-              <ProtectedRoute>
-                <MainPage />
-              </ProtectedRoute>
-            }
-          >
-            <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+          <Route path={ROUTES.DASHBOARD} element={<MainPage />}>
+            <Route
+              path={ROUTES.DASHBOARD}
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
             <Route path={ROUTES.POST} element={<SinglePost />} />
 
             <Route path={ROUTES.ABOUT} element={<About />} />
             <Route path={ROUTES.EXPLORE} element={<Explore />} />
             <Route
               path={ROUTES.ACCOUNT_SETTINGS}
-              element={<AccountSettingsPage />}
+              element={
+                <ProtectedRoute>
+                  <AccountSettingsPage />
+                </ProtectedRoute>
+              }
             >
               <Route
                 path={ROUTES.ACCOUNT_SETTINGS_EDIT}
                 index
-                element={<AccountEdit />}
+                element={
+                  <ProtectedRoute>
+                    <AccountEdit />
+                  </ProtectedRoute>
+                }
               />
               <Route
                 path={ROUTES.ACCOUNT_SETTINGS_PASSWORD}
-                element={<AccountPassword />}
+                element={
+                  <ProtectedRoute>
+                    <AccountPassword />
+                  </ProtectedRoute>
+                }
               />
             </Route>
             <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
@@ -79,7 +92,14 @@ function App() {
                 index
                 element={<ProfilePosts />}
               />
-              <Route path={ROUTES.PROFILE_SAVED} element={<ProfileSaved />} />
+              <Route
+                path={ROUTES.PROFILE_SAVED}
+                element={
+                  <ProtectedRoute>
+                    <ProfileSaved />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
           </Route>
 

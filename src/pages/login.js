@@ -20,11 +20,15 @@ export default function Login() {
 
   const cutOutArray = [CutOut0, CutOut1, CutOut2, CutOut3];
   const auth = getAuth();
+
   const isValid = password === '' || emailAddress === '';
+
+  useEffect(() => {
+    document.title = 'Login - Instagram';
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
     try {
       await signInWithEmailAndPassword(auth, emailAddress, password);
       navigate(ROUTES.DASHBOARD);
@@ -36,10 +40,6 @@ export default function Login() {
   };
 
   useEffect(() => {
-    document.title = 'Login - Instagram';
-  }, []);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCutOut((currentCutOut + 1) % cutOutArray.length);
     }, 2000);
@@ -48,16 +48,16 @@ export default function Login() {
 
   return (
     <div className="container mx-auto flex  h-screen w-screen items-center justify-center">
-      <div className="flex   ">
-        <div className="relative hidden md:block ">
-          <img src={LogInTemplate} alt="iPhone with Instagram app" />
-          <img
-            className="absolute inset-x-1/3  top-6 "
-            src={cutOutArray[currentCutOut]}
-          />
-        </div>
+      {/* Phone Template */}
+      <div className="relative hidden md:block ">
+        <img src={LogInTemplate} alt="Phone with Instagram app" />
+        <img
+          className="absolute inset-x-1/3  top-6 "
+          src={cutOutArray[currentCutOut]}
+        />
       </div>
-      <div className="flex w-1/5 flex-col ">
+      {/* Login Form */}
+      <div className=" container flex w-8/12 flex-col sm:w-6/12 md:w-4/12 lg:w-3/12 ">
         <div className="mb-4 flex flex-col items-center border bg-white p-4">
           <h1 className="flex w-full justify-center">
             <img
@@ -68,6 +68,7 @@ export default function Login() {
           </h1>
 
           <form onSubmit={handleLogin} method="POST">
+            {/* EmailAddress */}
             <input
               aria-label="Enter your email address"
               className="mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -76,6 +77,7 @@ export default function Login() {
               placeholder="Email address"
               onChange={(event) => setEmailAddress(event.target.value)}
             />
+            {/* Password */}
             <input
               aria-label="Enter your password"
               className="mr-3 mb-2 h-2 w-full rounded border py-5 px-4 text-sm"
@@ -84,6 +86,7 @@ export default function Login() {
               placeholder="Password"
               onChange={(event) => setPassword(event.target.value)}
             />
+            {/* LogIn button */}
             <button
               type="submit"
               disabled={isValid}
@@ -94,6 +97,7 @@ export default function Login() {
               Log In
             </button>
           </form>
+          {/* OR divider */}
           <div className=" my-4  flex  w-full items-center ">
             <div className="grow border-t border-gray-400"></div>
             <span className="mx-5 grow-0 text-xs font-bold tracking-wide text-gray-400">
@@ -101,6 +105,7 @@ export default function Login() {
             </span>
             <div className="grow border-t border-gray-400"></div>
           </div>
+          {/* LogIn with Facebook button */}
           <button
             className={
               ' flex h-8 w-full items-center justify-center  gap-2 rounded font-semibold text-blue-600 active:opacity-50'
@@ -109,6 +114,7 @@ export default function Login() {
             <IconFacebook />
             Log in with Facebook
           </button>
+
           <div className="my-2 flex justify-center">
             <Link to={ROUTES.PASSWORD_RESET}>
               <p className="text-sm text-blue-500">Forgot Password?</p>

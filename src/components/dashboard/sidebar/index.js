@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useUser from '../../../hooks/useUser';
 import SidebarLoading from '../../loading/SidebarLoading';
 import SidebarUserHeader from './SidebarUserHeader';
 import { getSuggestedProfiles } from '../../../utils/firebaseUtils';
 import SuggestedProfile from './SidebarSuggestedProfile';
+import UserContext from '../../../context/userContext';
 
 export default function Sidebar() {
+  const user = useContext(UserContext);
   const activeUser = useUser();
   const [suggestedProfiles, setSuggestedProfiles] = useState(null);
 
   useEffect(() => {
     async function suggestedProfiles() {
-      const response = await getSuggestedProfiles(activeUser.userId);
+      const response = await getSuggestedProfiles(user.uid);
       setSuggestedProfiles(response);
     }
     suggestedProfiles();

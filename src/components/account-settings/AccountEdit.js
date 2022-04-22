@@ -65,6 +65,7 @@ export default function AccountEdit() {
           photoURL: `${user.userId}.jpg`,
         });
         setFile(null);
+        window.location.reload();
       }
     };
 

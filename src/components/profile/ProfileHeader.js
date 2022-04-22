@@ -45,7 +45,8 @@ export default function ProfileHeader({
   };
 
   useEffect(() => {
-    const isFollowing = followers.includes(firebaseUser.uid);
+    const isFollowing =
+      firebaseUser && followers.includes(firebaseUser.uid) ? true : false;
     setIsFollowingProfile(isFollowing);
   }, [profile]);
 
@@ -71,15 +72,17 @@ export default function ProfileHeader({
           </div>
           <div className="flex flex-col justify-center gap-2 md:flex-row md:items-center md:justify-start md:gap-4">
             <p className="text-2xl ">{username}</p>
-            <button
-              className={`h-8 w-20 rounded bg-blue-500 text-sm font-bold text-white ${
-                isLoggedInUser ? 'hidden' : ''
-              }`}
-              type="button"
-              onClick={handleToggleFollow}
-            >
-              {isFollowingProfile ? 'Unfollow' : 'Follow'}
-            </button>
+            {firebaseUser && (
+              <button
+                className={`h-8 w-20 rounded bg-blue-500 text-sm font-bold text-white ${
+                  isLoggedInUser ? 'hidden' : ''
+                }`}
+                type="button"
+                onClick={handleToggleFollow}
+              >
+                {isFollowingProfile ? 'Unfollow' : 'Follow'}
+              </button>
+            )}
           </div>
         </div>
         {/* Profile Counters */}
@@ -87,7 +90,8 @@ export default function ProfileHeader({
           {followers === undefined || profile.following === undefined ? null : (
             <>
               <p className="flex flex-col items-center md:flex-row md:gap-2">
-                <span className="font-bold">{photosCount}</span> photos
+                <span className="font-bold">{photosCount}</span>{' '}
+                {photosCount === 1 ? 'post' : 'posts'}
               </p>
               <p className="flex flex-col items-center md:flex-row md:gap-2">
                 <span className="font-bold">{followerCount}</span>{' '}
