@@ -5,7 +5,7 @@ import ProfileNavbar from './ProfileNavbar';
 import {
   getUserByUsername,
   getUserPhotosByUsername,
-} from '../../utils/firebaseUilts';
+} from '../../utils/firebaseUtils';
 
 const reducer = (state, newState) => ({ ...state, ...newState });
 

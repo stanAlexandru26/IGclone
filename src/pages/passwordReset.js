@@ -41,7 +41,7 @@ export default function Login() {
               type="text"
               value={emailAddress}
               placeholder="Email address"
-              onChange={({ target }) => setEmailAddress(target.value)}
+              onChange={(event) => setEmailAddress(event.target.value)}
             />
             <button
               type="submit"

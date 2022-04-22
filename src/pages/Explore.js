@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useUser from '../hooks/useUser';
-import { getAllExplorePosts } from '../utils/firebaseUilts';
+import { getAllExplorePosts } from '../utils/firebaseUtils';
 import ProfileTimeline from '../components/profile/ProfileTimeline';
 
 export default function Explore() {

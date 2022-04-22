@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   getCurrentUserFirestoreData,
   followUser,
-} from '../../../utils/firebaseUilts';
+} from '../../../utils/firebaseUtils';
 import useFirebaseStorage from '../../../hooks/useFirebaseStorage';
 export default function SuggestedProfile({
   userDocId,

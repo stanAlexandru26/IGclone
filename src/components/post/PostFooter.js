@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Footer({ caption, username }) {
+export default function PostFooter({ caption, username }) {
   return (
     <div className="flex gap-2 px-4">
       <Link to={`/${username}/posts`}>

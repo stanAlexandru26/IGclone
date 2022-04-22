@@ -24,7 +24,7 @@ async function getCurrentUserFirestoreData(userId) {
   return userFirestoreData;
 }
 
-async function getFirebaseUserFolowersPosts(userId, followingUserIds) {
+async function getFirebaseUserFollowersPosts(userId, followingUserIds) {
   const q = query(
     collection(db, 'posts'),
     where('userId', 'in', followingUserIds),
@@ -150,7 +150,7 @@ async function getPostData(postId) {
 
 export {
   getCurrentUserFirestoreData,
-  getFirebaseUserFolowersPosts,
+  getFirebaseUserFollowersPosts,
   getSuggestedProfiles,
   followUser,
   unfollowUser,

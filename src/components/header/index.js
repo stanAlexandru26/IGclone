@@ -3,9 +3,11 @@ import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import UserContext from '../../context/userContext';
 import LogInLogo from '../../assets/images/logo.png';
-import HeaderUserAction from './headerUserAction';
+import HeaderUserAction from './HeaderUserAction';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import NewPostModal from './NewPostModal';
+import HeaderNewPostModal from './HeaderNewPostModal';
+import { ReactComponent as HeaderHomeIcon } from '../../assets/svg/HeaderHomeIcon.svg';
+import { ReactComponent as HeaderExploreIcon } from '../../assets/svg/HeaderExploreIcon.svg';
 
 export default function Header() {
   const user = useContext(UserContext);
@@ -25,58 +27,17 @@ export default function Header() {
               <>
                 <div className="flex flex-row items-center gap-6 ">
                   <Link to={ROUTES.DASHBOARD} arial-label="Home">
-                    <svg
-                      className={`w-6  cursor-pointer   fill-transparent ${
+                    <HeaderHomeIcon
+                      className={`w-6 cursor-pointer   fill-transparent ${
                         visible ? 'fill-none' : 'fill-black'
                       }`}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M22 23h-6.001a1 1 0 01-1-1v-5.455a2.997 2.997 0 10-5.993 0V22a1 1 0 01-1 1H2a1 1 0 01-1-1V11.543a1.002 1.002 0 01.31-.724l10-9.543a1.001 1.001 0 011.38 0l10 9.543a1.002 1.002 0 01.31.724V22a1 1 0 01-1 1z"
-                      />
-                    </svg>
+                    />
                   </Link>
 
-                  <NewPostModal />
+                  <HeaderNewPostModal />
 
                   <Link to={ROUTES.EXPLORE} arial-label="Explore">
-                    <svg
-                      aria-label="Find People"
-                      color="#262626"
-                      fill="#262626"
-                      height="24"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="24"
-                    >
-                      <polygon
-                        fill="none"
-                        points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      ></polygon>
-                      <polygon
-                        fillRule="evenodd"
-                        points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"
-                      ></polygon>
-                      <circle
-                        cx="12.001"
-                        cy="12.005"
-                        fill="none"
-                        r="10.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      ></circle>
-                    </svg>
+                    <HeaderExploreIcon />
                   </Link>
 
                   <HeaderUserAction

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import Profile from '../components/profile/index.js';
-import { getUserByUsername } from '../utils/firebaseUilts';
+import { getUserByUsername } from '../utils/firebaseUtils';
 import UserContext from '../context/userContext';
 
 export default function ProfilePage() {

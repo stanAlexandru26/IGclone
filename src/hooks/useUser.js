@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { getCurrentUserFirestoreData } from '../utils/firebaseUilts';
+import { getCurrentUserFirestoreData } from '../utils/firebaseUtils';
 import UserContext from '../context/userContext';
 
 export default function useUser() {

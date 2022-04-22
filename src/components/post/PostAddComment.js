@@ -4,7 +4,7 @@ import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 import FirebaseContext from '../../context/firebaseContext';
 
-export default function AddComment({
+export default function PostAddComment({
   docId,
   comments,
   setComments,

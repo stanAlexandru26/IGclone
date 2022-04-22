@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getUserPhotosByUsername } from '../../utils/firebaseUilts';
+import { getUserPhotosByUsername } from '../../utils/firebaseUtils';
 import ProfileTimeline from './ProfileTimeline';
 
 export default function ProfilePosts() {

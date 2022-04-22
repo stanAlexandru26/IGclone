@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Comments({ comments }) {
+export default function PostComments({ comments, docId }) {
   return (
     <>
       <div className="p-4 pt-1 ">
         {comments.length >= 3 && (
-          <p className="cursor-pointer text-sm text-gray-500">
+          <Link to={`/p/${docId}`} className="text-sm text-gray-600">
             View all {comments.length} comments
-          </p>
+          </Link>
         )}
         <div className="flex flex-col ">
           {comments.slice(0, 3).map((item) => (

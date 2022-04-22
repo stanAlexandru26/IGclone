@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import {
   getPostData,
   getCurrentUserFirestoreData,
-} from '../utils/firebaseUilts';
+} from '../utils/firebaseUtils';
 import Post from '../components/post/index';
 import UserContext from '../context/userContext';
 
@@ -21,12 +21,8 @@ export default function SinglePost() {
     const getData = async () => {
       if (postId) {
         const data = await getPostData(postId);
-        console.log('🚀 ~ file: post.js ~ line 27 ~ getData ~ data', data);
         const userData = await getCurrentUserFirestoreData(data.userId);
-        console.log(
-          '🚀 ~ file: post.js ~ line 28 ~ getData ~ userData',
-          userData,
-        );
+
         setPost({
           ...data,
           userImageSrc: userData[0].imageSrc,

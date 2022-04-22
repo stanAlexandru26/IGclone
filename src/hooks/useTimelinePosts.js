@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import UserContext from '../context/userContext';
 import {
   getCurrentUserFirestoreData,
-  getFirebaseUserFolowersPosts,
-} from '../utils/firebaseUilts';
+  getFirebaseUserFollowersPosts,
+} from '../utils/firebaseUtils';
 
 export default function useTimelinePosts() {
   const [posts, setPosts] = useState([]);
@@ -16,7 +16,7 @@ export default function useTimelinePosts() {
     );
     let followedUsersPhotos = [];
     if (followingUserIds && followingUserIds[0].following.length > 0) {
-      followedUsersPhotos = await getFirebaseUserFolowersPosts(
+      followedUsersPhotos = await getFirebaseUserFollowersPosts(
         firebaseUser.uid,
         followingUserIds[0].following,
       );

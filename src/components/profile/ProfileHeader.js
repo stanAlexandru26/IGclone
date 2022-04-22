@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../../context/userContext';
-import { followUser, unfollowUser } from '../../utils/firebaseUilts';
+import { followUser, unfollowUser } from '../../utils/firebaseUtils';
 import useUser from '../../hooks/useUser';
 import useFirebaseStorage from '../../hooks/useFirebaseStorage';
 

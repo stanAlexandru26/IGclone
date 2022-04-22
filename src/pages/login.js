@@ -47,7 +47,7 @@ export default function Login() {
   }, [currentCutOut]);
 
   return (
-    <div className=" mx-auto flex  h-screen w-screen items-center justify-center">
+    <div className="container mx-auto flex  h-screen w-screen items-center justify-center">
       <div className="flex   ">
         <div className="relative hidden md:block ">
           <img src={LogInTemplate} alt="iPhone with Instagram app" />
@@ -57,7 +57,7 @@ export default function Login() {
           />
         </div>
       </div>
-      <div className="flex w-1/5 flex-col">
+      <div className="flex w-1/5 flex-col ">
         <div className="mb-4 flex flex-col items-center border bg-white p-4">
           <h1 className="flex w-full justify-center">
             <img
@@ -74,7 +74,7 @@ export default function Login() {
               type="text"
               value={emailAddress}
               placeholder="Email address"
-              onChange={({ target }) => setEmailAddress(target.value)}
+              onChange={(event) => setEmailAddress(event.target.value)}
             />
             <input
               aria-label="Enter your password"
@@ -82,7 +82,7 @@ export default function Login() {
               type="password"
               value={password}
               placeholder="Password"
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <button
               type="submit"

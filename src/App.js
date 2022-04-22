@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import UserContext from './context/userContext';
 import useAuthListener from './hooks/useAuth';
+import PageLoading from './components/loading/PageLoading';
 
 const Login = lazy(() => import('./pages/login'));
 const SignUp = lazy(() => import('./pages/signup'));
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <UserContext.Provider value={user}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageLoading />}>
         <Routes>
           <Route
             path={ROUTES.DASHBOARD}
@@ -71,6 +72,7 @@ function App() {
                 element={<AccountPassword />}
               />
             </Route>
+            <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
             <Route path={ROUTES.PROFILE} element={<ProfilePage />}>
               <Route
                 path={ROUTES.PROFILE_POSTS}
@@ -82,7 +84,6 @@ function App() {
           </Route>
 
           <Route path={ROUTES.LOGIN} element={<Login />} />
-
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
           <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />

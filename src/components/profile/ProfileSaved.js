@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getSavedPosts } from '../../utils/firebaseUilts';
+import { getSavedPosts } from '../../utils/firebaseUtils';
 import ProfileTimeline from './ProfileTimeline';
 import UserContext from '../../context/userContext';
 import * as ROUTES from '../../constants/routes';

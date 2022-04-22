@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useUser from '../../../hooks/useUser';
-import SidebarLoading from '../../loading/sidebarLoading';
+import SidebarLoading from '../../loading/SidebarLoading';
 import SidebarUserHeader from './SidebarUserHeader';
-import { getSuggestedProfiles } from '../../../utils/firebaseUilts';
+import { getSuggestedProfiles } from '../../../utils/firebaseUtils';
 import SuggestedProfile from './SidebarSuggestedProfile';
 
 export default function Sidebar() {
