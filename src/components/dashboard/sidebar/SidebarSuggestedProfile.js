@@ -38,7 +38,8 @@ export default function SuggestedProfile({
         </Link>
         {followers.length > 0 && (
           <span className="text-xs text-gray-400">
-            Followed by {followers.length} people{' '}
+            Followed by {followers.length}{' '}
+            {followers.length > 1 ? 'persons' : 'person '}
           </span>
         )}
       </div>

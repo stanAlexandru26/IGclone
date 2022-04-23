@@ -94,3 +94,17 @@ export function IconFacebook() {
     ></span>
   );
 }
+
+export function HeaderSearchCloseButton() {
+  return (
+    <span
+      style={{
+        backgroundImage: `url(${sprite})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: ` -318px -333px`,
+        height: '20px',
+        width: '20px',
+      }}
+    ></span>
+  );
+}

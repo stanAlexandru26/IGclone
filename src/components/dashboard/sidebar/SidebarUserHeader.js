@@ -17,6 +17,7 @@ export default function SidebarUserHeader({ username, fullName, imageSrc }) {
             <div className="flex flex-col ">
               <span className="font-semibold">{username}</span>
               <span className="text-sm text-gray-400">{fullName}</span>
+              
             </div>
           </div>
         </Link>

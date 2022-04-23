@@ -8,6 +8,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import HeaderNewPostModal from './HeaderNewPostModal';
 import { ReactComponent as HeaderHomeIcon } from '../../assets/svg/HeaderHomeIcon.svg';
 import { ReactComponent as HeaderExploreIcon } from '../../assets/svg/HeaderExploreIcon.svg';
+import HeaderSearchBar from './HeaderSearchBar';
 
 export default function Header() {
   const user = useContext(UserContext);
@@ -17,11 +18,11 @@ export default function Header() {
   return (
     <header className="mb-4 w-screen border-b bg-white md:mb-8">
       <div className=" mx-auto h-14 w-8/12">
-        <div className="mx-auto flex h-full items-center justify-between gap-4 ">
+        <div className="mx-auto flex h-full items-center justify-between gap-6 ">
           <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
-            <img src={LogInLogo} alt="Instagram" className="mt-2 w-24 sm:w-6/12" />
+            <img src={LogInLogo} alt="Instagram" className="mt-2 w-24 " />
           </Link>
-
+          <HeaderSearchBar />
           <div className="text-gray align-items flex items-center text-center">
             {user ? (
               <>

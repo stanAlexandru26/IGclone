@@ -18,7 +18,10 @@ export default function HeaderUserAction({ user }) {
   const { photoFirebaseUrl } = useFirebaseStorage(user.photoURL, 'avatar');
 
   return (
-    <div className="relative flex min-w-max cursor-pointer items-center">
+    <div
+      className="relative z-50 flex min-w-max cursor-pointer items-center"
+      ref={objectReference}
+    >
       <Link to={`/p/${user.displayName}`} />
       <img
         className={`h-8 w-8 rounded-full  ${
@@ -29,7 +32,6 @@ export default function HeaderUserAction({ user }) {
         onClick={() => setVisible(!visible)}
       />
       <div
-        ref={objectReference}
         className={`absolute top-14 -left-44 w-56 rounded bg-white shadow-xl drop-shadow-[0_0_1px_rgba(0,0,0,0.25)] hover:cursor-pointer   ${
           visible ? 'block' : 'hidden'
         }`}

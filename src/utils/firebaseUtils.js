@@ -12,7 +12,7 @@ import {
 
 import { db } from '../firebase/firebase';
 
-async function getCurrentUserFirestoreData(userId) {
+ async function getCurrentUserFirestoreData(userId) {
   const q = query(collection(db, 'users'), where('userId', '==', userId));
   const querySnapshot = await getDocs(q);
 
@@ -123,6 +123,17 @@ async function getAllExplorePosts() {
 
   return posts;
 }
+async function getAllUsers() {
+  const q = query(collection(db, 'users'));
+  const result = await getDocs(q);
+
+  const posts = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return posts;
+}
 
 async function getSavedPosts(userId) {
   const q = query(
@@ -159,4 +170,5 @@ export {
   getAllExplorePosts,
   getSavedPosts,
   getPostData,
+  getAllUsers,
 };
