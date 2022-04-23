@@ -48,10 +48,10 @@ export default function PostAddComment({
         />
         <button
           className={`text-sm font-bold text-blue-500 ${
-            !comment && 'opacity-25'
+            (comment.length < 3 || comment.length > 30) && 'opacity-25'
           }`}
           type="button"
-          disabled={comment.length < 3}
+          disabled={comment.length < 3 || comment.length > 30}
           onClick={handleSubmitComment}
         >
           Post

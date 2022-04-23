@@ -57,8 +57,12 @@ export default function Post({ content, horizontal }) {
                 caption={content.caption}
               />
             </div>
-            <div className="order-3 grow  ">
-              <PostComments docId={content.docId} comments={comments} />
+            <div className="order-3   ">
+              <PostComments
+                docId={content.docId}
+                comments={comments}
+                horizontal={horizontal}
+              />
             </div>
             <div className="order-4 basis-1/12">
               <PostActions
