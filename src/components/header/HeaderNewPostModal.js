@@ -121,7 +121,7 @@ export default function HeaderNewPostModal() {
                     file && (
                       <>
                         <div className="flex h-full flex-row divide-x-2 ">
-                          <div className="flex h-[30rem] basis-4/6  flex-col justify-center">
+                          <div className="flex  max-h-fit basis-4/6  flex-col items-center justify-center rounded-b-lg bg-gray-100 ">
                             <img
                               src={URL.createObjectURL(file)}
                               alt="New Post Image"
@@ -133,7 +133,7 @@ export default function HeaderNewPostModal() {
                               <img
                                 src={photoFirebaseUrl}
                                 alt="User icon"
-                                className="h-10 w-10 rounded-full border-2"
+                                className="h-6 w-6 shrink-0 rounded-full border-2 md:h-10 md:w-10"
                               />
                               <p className=" font-semibold">
                                 {user.displayName}
