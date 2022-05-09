@@ -68,7 +68,7 @@ export default function HeaderSearchBar() {
           }`}
         >
           <div className="absolute -inset-2 inset-x-40 h-4 w-4 rotate-45 bg-white "></div>
-          <div className=" flex h-full w-full flex-col overflow-scroll ">
+          <div className=" flex h-full w-full flex-col overflow-y-auto overflow-x-hidden	 ">
             {filteredArray.map((profile) => (
               <HeaderSearchProfile
                 key={profile.docId}

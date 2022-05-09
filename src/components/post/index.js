@@ -40,11 +40,11 @@ export default function Post({ content, horizontal }) {
           />
         </div>
       ) : (
-        <div className="mx-auto mb-8  flex w-11/12 flex-col rounded border md:flex-row ">
+        <div className="mx-auto mb-8 flex w-11/12 flex-col rounded border md:flex-row ">
           <div className="flex items-center justify-center  bg-slate-100 md:border-r md:border-b-0  ">
             <PostImage imageSrc={content.imageSrc} caption={content.caption} />
           </div>
-          <div className="flex shrink-0 flex-col place-content-evenly ">
+          <div className="flex shrink-0 grow flex-col place-content-evenly border md:border-0 ">
             <div className="order-1 basis-1/12">
               <PostHeader
                 username={content.username}
@@ -57,7 +57,7 @@ export default function Post({ content, horizontal }) {
                 caption={content.caption}
               />
             </div>
-            <div className="order-3   ">
+            <div className="order-3 grow ">
               <PostComments
                 docId={content.docId}
                 comments={comments}

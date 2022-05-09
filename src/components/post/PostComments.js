@@ -2,16 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function PostComments({ comments, docId, horizontal }) {
-  console.log(
-    '🚀 ~ file: PostComments.js ~ line 5 ~ PostComments ~ horizontal',
-    horizontal,
-  );
   return (
     <>
       <div
         className={`${
           horizontal ? 'h-40' : ''
-        } h-full  w-full overflow-scroll px-4`}
+        } h-full  w-full  px-4`}
       >
         {!horizontal && comments.length >= 3 && (
           <Link to={`/p/${docId}`} className="text-sm text-gray-600">
